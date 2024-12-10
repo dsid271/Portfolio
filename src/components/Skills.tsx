@@ -1,4 +1,3 @@
-import React from 'react';
 import { Brain, Database, Code, GitBranch, Terminal, BarChart } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
