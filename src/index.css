@@ -9,11 +9,11 @@
 }
 @font-face {
   font-family:'Extrude';
-  src: url('E:\Portfolio\Font\Extrude.ttf');
+  src: url('.\Font\Extrude.ttf');
 }
 @font-face {
   font-family: 'commodore';
-  src: url('E:\Portfolio\Font\Commodore Pixelized v1.2.ttf');
+  src: url('.\Font\Commodore Pixelized v1.2.ttf');
 }
 
 :root {
