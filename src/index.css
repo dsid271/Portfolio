@@ -1,19 +1,18 @@
-@import url('https://fonts.cdnfonts.com/css/arcade-classic');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @font-face {
-  font-family: 'ArcadeClassic', 'Arial', sans-serif;
-  src: url('https://fonts.cdnfonts.com/css/arcade-classic'), serif;
-}
-@font-face {
   font-family:'Extrude';
-  src: url('.\Font\Extrude.ttf');
+  src: url('.\Font\Extrude.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 @font-face {
   font-family: 'commodore';
-  src: url('.\Font\Commodore Pixelized v1.2.ttf');
+  src: url('.\Font\Commodore Pixelized v1.2.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 :root {
