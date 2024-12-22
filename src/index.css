@@ -4,13 +4,13 @@
 
 @font-face {
   font-family:'Extrude';
-  src: url('\Font\Extrude.ttf') format('truetype');
+  src: url('/assets/fonts/Extrude.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'commodore';
-  src: url('\Font\Commodore Pixelized v1.2.ttf') format('truetype');
+  src: url('/assets/fonts/Commodore Pixelized v1.2.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
