@@ -14,7 +14,7 @@ export function Contact() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://portfolio-backend-4plr.onrender.com', {
+      const response = await fetch('https://portfolio-backend-4plr.onrender.com/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
