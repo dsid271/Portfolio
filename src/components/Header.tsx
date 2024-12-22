@@ -4,7 +4,7 @@ export function Header() {
   return (
     <header className="bg-gradient-to-r from-blue-900 to-purple-900 text-white py-6">
       <nav className="container mx-auto px-4 flex justify-between items-center">
-        <h1 className="text-2xl font-font-extrude">Dondapati Sidhartha</h1>
+        <h1 className="text-2xl font-extrude">Dondapati Sidhartha</h1>
         <div className="flex gap-4">
           <a href="https://github.com/dsid271" className="hover:text-blue-300 transition-colors">
             <Github size={24} />
