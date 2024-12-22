@@ -2,7 +2,12 @@
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        extrude: ['Extrude', 'sans-serif'],
+        commodore: ['Commodore', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 };
