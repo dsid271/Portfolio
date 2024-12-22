@@ -10,7 +10,7 @@ export default {
     extend: {
       fontFamily: {
         extrude: ['Extrude', 'sans-serif'],
-        commodore: ['Commodore', 'sans-serif'],
+        commodore: ['commodore', 'sans-serif'],
       },
     },
   },
