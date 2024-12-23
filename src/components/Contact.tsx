@@ -7,6 +7,7 @@ export function Contact() {
   const [ref, controls] = useScrollAnimation();
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isMessageSent, setIsMessageSent] = useState(false);
+  const [loading, setLoading] = useState(false); // Loading state
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -14,6 +15,7 @@ export function Contact() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true); // Show loading state
     try {
       const response = await fetch('https://portfolio-backend-4plr.onrender.com/send-email', {
         method: 'POST',
@@ -22,7 +24,7 @@ export function Contact() {
       });
 
       if (response.ok) {
-        setIsMessageSent(true); // Show Thank You message
+        setIsMessageSent(true); // Switch to thank-you message
         setFormData({ name: '', email: '', message: '' }); // Reset form
       } else {
         alert('Failed to send message.');
@@ -30,6 +32,8 @@ export function Contact() {
     } catch (error) {
       console.error('Error sending message:', error);
       alert('An error occurred.');
+    } finally {
+      setLoading(false); // Stop loading state
     }
   };
 
@@ -141,9 +145,14 @@ export function Contact() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-bright-pink text-black py-2 px-4 rounded-lg hover:bg-bright-yellow transition-all duration-300 font-commodore"
+                  className={`w-full py-2 px-4 rounded-lg font-commodore transition-all duration-300 ${
+                    loading
+                      ? 'bg-gray-500 cursor-not-allowed'
+                      : 'bg-bright-pink hover:bg-bright-yellow text-black'
+                  }`}
+                  disabled={loading} // Disable button while loading
                 >
-                  Send Message
+                  {loading ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
             </div>
