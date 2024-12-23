@@ -59,7 +59,7 @@ export function Contact() {
               Thank You for Getting in Touch!
             </p>
             <p className="text-pixel font-commodore text-white">
-              I’ll get back to you as soon as possible. 🚀
+              I’ll get back to you as soon as possible. 😁
             </p>
             <button
               className="mt-8 px-6 py-3 bg-bright-pink text-black font-commodore rounded-lg hover:bg-bright-yellow transition-all"
