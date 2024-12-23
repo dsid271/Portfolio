@@ -89,8 +89,8 @@ export function Contact() {
             }}
             transition={{ duration: 0.6 }}
             className="max-w-3xl mx-auto bg-gray-900 rounded-lg shadow-lg p-8"
-            key={isMessageSent} // This forces a re-render when isMessageSent changes
-          >
+            key={isMessageSent.toString()} // Convert boolean to string
+            >
             <motion.h2
               className="text-pixel font-commodore text-bright-pink text-center mb-12"
               initial={{ opacity: 0, y: -20 }}
