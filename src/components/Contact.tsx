@@ -34,62 +34,53 @@ export function Contact() {
   };
 
   const handleBackToContact = () => {
-    // Reset the message state and force a clean re-render
+    // Reset the message state to re-render form completely
     setIsMessageSent(false);
-    setFormData({ name: '', email: '', message: '' }); // Ensure inputs are cleared
   };
 
   return (
     <section id="contact" className="py-20 bg-black">
-      {isMessageSent ? (
-        // Thank You Message
-        <div className="container mx-auto text-center">
-          <motion.h2
-            className="text-pixel font-commodore text-bright-yellow mb-4"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-          >
-            🎉 ACHIEVEMENT UNLOCKED 🎉
-          </motion.h2>
-          <motion.p
-            className="text-pixel font-commodore text-bright-green mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            Thank You for Getting in Touch!
-          </motion.p>
+      <div className="container mx-auto px-4">
+        {isMessageSent ? (
+          // Thank You Message
+          <div className="text-center">
+            <motion.h2
+              className="text-pixel font-commodore text-bright-yellow mb-4"
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+            >
+              🎉 ACHIEVEMENT UNLOCKED 🎉
+            </motion.h2>
+            <motion.p
+              className="text-pixel font-commodore text-bright-green mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              Thank You for Getting in Touch!
+            </motion.p>
+            <motion.div
+              className="text-pixel font-commodore text-white"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              I’ll get back to you as soon as possible. 🚀
+            </motion.div>
+            <motion.button
+              className="mt-8 px-6 py-3 bg-bright-pink text-black font-commodore rounded-lg hover:bg-bright-yellow transition-all"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              onClick={handleBackToContact}
+            >
+              Back to Contact
+            </motion.button>
+          </div>
+        ) : (
+          // Contact Form with a Key Prop to Force Re-render
           <motion.div
-            className="text-pixel font-commodore text-white"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            I’ll get back to you as soon as possible. 🚀
-          </motion.div>
-          <motion.button
-            className="mt-8 px-6 py-3 bg-bright-pink text-black font-commodore rounded-lg hover:bg-bright-yellow transition-all"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            onClick={handleBackToContact}
-          >
-            Back to Contact
-          </motion.button>
-        </div>
-      ) : (
-        // Contact Form
-        <div className="container mx-auto px-4">
-          <motion.h2 
-            className="text-pixel font-commodore text-bright-pink text-center mb-12"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            Get in Touch
-          </motion.h2>
-          <motion.div 
             ref={ref}
             initial={{ opacity: 0, y: 30 }}
             animate={controls}
@@ -98,7 +89,16 @@ export function Contact() {
             }}
             transition={{ duration: 0.6 }}
             className="max-w-3xl mx-auto bg-gray-900 rounded-lg shadow-lg p-8"
+            key={isMessageSent} // This forces a re-render when isMessageSent changes
           >
+            <motion.h2
+              className="text-pixel font-commodore text-bright-pink text-center mb-12"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              Get in Touch
+            </motion.h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-bright-pink">
               <div>
                 <h3 className="text-xl font-semibold mb-4 font-commodore">Contact Information</h3>
@@ -172,8 +172,8 @@ export function Contact() {
               </form>
             </div>
           </motion.div>
-        </div>
-      )}
+        )}
+      </div>
     </section>
   );
 }
