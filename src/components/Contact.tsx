@@ -39,7 +39,7 @@ export function Contact() {
       <section id="contact" className="py-20 bg-black">
         <div className="container mx-auto text-center">
           <motion.h2
-            className="text-pixel font-arcade text-bright-yellow mb-4"
+            className="text-pixel font-commodore text-bright-yellow mb-4"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
@@ -47,7 +47,7 @@ export function Contact() {
             🎉 ACHIEVEMENT UNLOCKED 🎉
           </motion.h2>
           <motion.p
-            className="text-pixel font-arcade text-bright-green mb-6"
+            className="text-pixel font-commodore text-bright-green mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -55,7 +55,7 @@ export function Contact() {
             Thank You for Getting in Touch!
           </motion.p>
           <motion.div
-            className="text-pixel font-arcade text-white"
+            className="text-pixel font-commodore text-white"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -63,7 +63,7 @@ export function Contact() {
             I’ll get back to you as soon as possible. 🚀
           </motion.div>
           <motion.button
-            className="mt-8 px-6 py-3 bg-bright-pink text-black font-arcade rounded-lg hover:bg-bright-yellow transition-all"
+            className="mt-8 px-6 py-3 bg-bright-pink text-black font-commodore rounded-lg hover:bg-bright-yellow transition-all"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -80,7 +80,7 @@ export function Contact() {
     <section id="contact" className="py-20 bg-black">
       <div className="container mx-auto px-4">
         <motion.h2 
-          className="text-pixel font-arcade text-bright-pink text-center mb-12"
+          className="text-pixel font-commodore text-bright-pink text-center mb-12"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -99,7 +99,7 @@ export function Contact() {
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-bright-pink">
             <div>
-              <h3 className="text-xl font-semibold mb-4 font-arcade">Contact Information</h3>
+              <h3 className="text-xl font-semibold mb-4 font-commodore">Contact Information</h3>
               <div className="space-y-4">
                 <motion.div 
                   className="flex items-center gap-3"
@@ -129,7 +129,7 @@ export function Contact() {
             </div>
             <form onSubmit={handleSubmit} className="space-y-4">
               <motion.div>
-                <label className="block text-sm font-medium text-bright-yellow mb-1 font-arcade">Name</label>
+                <label className="block text-sm font-medium text-bright-yellow mb-1 font-commodore">Name</label>
                 <input 
                   type="text"
                   name="name"
@@ -140,7 +140,7 @@ export function Contact() {
                 />
               </motion.div>
               <motion.div>
-                <label className="block text-sm font-medium text-bright-yellow mb-1 font-arcade">Email</label>
+                <label className="block text-sm font-medium text-bright-yellow mb-1 font-commodore">Email</label>
                 <input 
                   type="email" 
                   name="email"
@@ -151,7 +151,7 @@ export function Contact() {
                 />
               </motion.div>
               <motion.div>
-                <label className="block text-sm font-medium text-bright-yellow mb-1 font-arcade">Message</label>
+                <label className="block text-sm font-medium text-bright-yellow mb-1 font-commodore">Message</label>
                 <textarea 
                   name="message"
                   value={formData.message}
@@ -163,7 +163,7 @@ export function Contact() {
               </motion.div>
               <motion.button 
                 type="submit"
-                className="w-full bg-bright-pink text-black py-2 px-4 rounded-lg hover:bg-bright-yellow transition-all duration-300 font-arcade"
+                className="w-full bg-bright-pink text-black py-2 px-4 rounded-lg hover:bg-bright-yellow transition-all duration-300 font-commodore"
               >
                 Send Message
               </motion.button>
