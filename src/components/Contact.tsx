@@ -34,52 +34,38 @@ export function Contact() {
   };
 
   const handleBackToContact = () => {
-    // Reset the message state to re-render form completely
-    setIsMessageSent(false);
+    setIsMessageSent(false); // Switch back to form view
   };
 
   return (
-    <section id="contact" className="py-20 bg-black">
+    <section id="contact" className="py-20 bg-black text-white">
       <div className="container mx-auto px-4">
         {isMessageSent ? (
           // Thank You Message
-          <div className="text-center">
-            <motion.h2
-              className="text-pixel font-commodore text-bright-yellow mb-4"
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-            >
+          <motion.div
+            className="text-center"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-pixel font-commodore text-bright-yellow mb-4">
               🎉 ACHIEVEMENT UNLOCKED 🎉
-            </motion.h2>
-            <motion.p
-              className="text-pixel font-commodore text-bright-green mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
+            </h2>
+            <p className="text-pixel font-commodore text-bright-green mb-6">
               Thank You for Getting in Touch!
-            </motion.p>
-            <motion.div
-              className="text-pixel font-commodore text-white"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
+            </p>
+            <p className="text-pixel font-commodore text-white">
               I’ll get back to you as soon as possible. 🚀
-            </motion.div>
-            <motion.button
+            </p>
+            <button
               className="mt-8 px-6 py-3 bg-bright-pink text-black font-commodore rounded-lg hover:bg-bright-yellow transition-all"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
               onClick={handleBackToContact}
             >
               Back to Contact
-            </motion.button>
-          </div>
+            </button>
+          </motion.div>
         ) : (
-          // Contact Form with a Key Prop to Force Re-render
+          // Contact Form
           <motion.div
             ref={ref}
             initial={{ opacity: 0, y: 30 }}
@@ -89,50 +75,36 @@ export function Contact() {
             }}
             transition={{ duration: 0.6 }}
             className="max-w-3xl mx-auto bg-gray-900 rounded-lg shadow-lg p-8"
-            key={isMessageSent.toString()} // Convert boolean to string
-            >
-            <motion.h2
-              className="text-pixel font-commodore text-bright-pink text-center mb-12"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
+          >
+            <h2 className="text-pixel font-commodore text-bright-pink text-center mb-12">
               Get in Touch
-            </motion.h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-bright-pink">
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
-                <h3 className="text-xl font-semibold mb-4 font-commodore">Contact Information</h3>
-                <div className="space-y-4">
-                  <motion.div 
-                    className="flex items-center gap-3"
-                    whileHover={{ x: 10 }}
-                    transition={{ duration: 0.2 }}
-                  >
+                <h3 className="text-xl font-semibold mb-4 text-bright-pink font-commodore">
+                  Contact Information
+                </h3>
+                <div className="space-y-4 text-bright-pink">
+                  <div className="flex items-center gap-3">
                     <Mail className="text-bright-green" />
                     <span>dsid271@gmail.com</span>
-                  </motion.div>
-                  <motion.div 
-                    className="flex items-center gap-3"
-                    whileHover={{ x: 10 }}
-                    transition={{ duration: 0.2 }}
-                  >
+                  </div>
+                  <div className="flex items-center gap-3">
                     <Phone className="text-bright-green" />
                     <span>+91 6309787190</span>
-                  </motion.div>
-                  <motion.div 
-                    className="flex items-center gap-3"
-                    whileHover={{ x: 10 }}
-                    transition={{ duration: 0.2 }}
-                  >
+                  </div>
+                  <div className="flex items-center gap-3">
                     <MapPin className="text-bright-green" />
                     <span>Hyderabad, India</span>
-                  </motion.div>
+                  </div>
                 </div>
               </div>
               <form onSubmit={handleSubmit} className="space-y-4">
-                <motion.div>
-                  <label className="block text-sm font-medium text-bright-yellow mb-1 font-commodore">Name</label>
-                  <input 
+                <div>
+                  <label className="block text-sm font-medium text-bright-yellow mb-1 font-commodore">
+                    Name
+                  </label>
+                  <input
                     type="text"
                     name="name"
                     value={formData.name}
@@ -140,21 +112,25 @@ export function Contact() {
                     className="w-full px-4 py-2 border rounded-lg bg-gray-800 text-bright-green focus:ring-2 focus:ring-bright-pink focus:border-transparent transition-all duration-300"
                     required
                   />
-                </motion.div>
-                <motion.div>
-                  <label className="block text-sm font-medium text-bright-yellow mb-1 font-commodore">Email</label>
-                  <input 
-                    type="email" 
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-bright-yellow mb-1 font-commodore">
+                    Email
+                  </label>
+                  <input
+                    type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
                     className="w-full px-4 py-2 border rounded-lg bg-gray-800 text-bright-green focus:ring-2 focus:ring-bright-pink focus:border-transparent transition-all duration-300"
                     required
                   />
-                </motion.div>
-                <motion.div>
-                  <label className="block text-sm font-medium text-bright-yellow mb-1 font-commodore">Message</label>
-                  <textarea 
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-bright-yellow mb-1 font-commodore">
+                    Message
+                  </label>
+                  <textarea
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
@@ -162,13 +138,13 @@ export function Contact() {
                     className="w-full px-4 py-2 border rounded-lg bg-gray-800 text-bright-green focus:ring-2 focus:ring-bright-pink focus:border-transparent transition-all duration-300"
                     required
                   ></textarea>
-                </motion.div>
-                <motion.button 
+                </div>
+                <button
                   type="submit"
                   className="w-full bg-bright-pink text-black py-2 px-4 rounded-lg hover:bg-bright-yellow transition-all duration-300 font-commodore"
                 >
                   Send Message
-                </motion.button>
+                </button>
               </form>
             </div>
           </motion.div>
