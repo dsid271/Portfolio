@@ -30,7 +30,7 @@ const projects = [
     title: 'Payment Fraud Detection',
     description: 'Trained ML models on the PaySim1 dataset to identify fraud in online payments, achieving high precision, recall, and AUC.',
     tech: ['Logistic Regression', 'Random Forest', 'EDA'],
-    image: 'https://images.unsplash.com/photo-1581093588401-9af1f2d6f48b?auto=format&fit=crop&q=80&w=400'
+    image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3'
   },
   {
     title: 'Car Price Prediction',
@@ -42,13 +42,7 @@ const projects = [
     title: 'Language Translation Model',
     description: 'Developed a transformer-based model for translating English to Hindi and Telugu, using a custom WordPiece tokenizer and Opus100 dataset.',
     tech: ['PyTorch', 'Transformers', 'WordPiece'],
-    image: 'https://images.unsplash.com/photo-1558024920-b3008d1c9b4e?auto=format&fit=crop&q=80&w=400'
-  },
-  {
-    title: 'Personal Portfolio Website',
-    description: 'Built a fully responsive portfolio website using Vite, React, and TypeScript, showcasing projects and skills. Designed with the help of AI.',
-    tech: ['React', 'TypeScript', 'Vite'],
-    image: 'https://images.unsplash.com/photo-1590642912457-c0f99c96ba71?auto=format&fit=crop&q=80&w=400'
+    image: 'https://plus.unsplash.com/premium_vector-1689096883272-84a4edd015c4?q=80&w=1392&auto=format&fit=crop&ixlib=rb-4.0.3'
   }
 ];
 
