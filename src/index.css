@@ -270,30 +270,32 @@ body {
 
 .banded-text {
   font-size: 4rem;
-  font-family: 'Press Start 2P', cursive;
+  font-family: 'Press Start 2P', cursive, monospace; /* Restores font style */
   text-transform: uppercase;
   background: linear-gradient(
-    to bottom, 
-    magenta, 
-    #ff0077, 
-    #ff0077, 
-    #ff8800, 
-    #ff8800, 
-    #ffcc00, 
-    #ffcc00, 
-    #ff8800, 
-    #ff8800, 
-    #ff0077, 
+    to bottom,
+    magenta,
+    #ff0077,
+    #ff0077,
+    #ff8800,
+    #ff8800,
+    #ffcc00,
+    #ffcc00,
+    #ff8800,
+    #ff8800,
+    #ff0077,
     #ff0077,
     magenta
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  display: inline-block;
 }
 
 .blinking-cursor {
   display: inline-block;
+  font-family: 'commodore', cursive, monospace;
+  font-size: 4rem;
+  color: #ffcc00;
   animation: blink 1s step-end infinite;
 }
 
