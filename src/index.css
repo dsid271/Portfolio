@@ -270,11 +270,11 @@ body {
 
 .banded-text {
   font-size: 4rem;
-  font-family: 'Press Start 2P', cursive, monospace; /* Restores font style */
+  font-family: 'commodore', cursive, monospace;
   text-transform: uppercase;
   background: linear-gradient(
     to bottom,
-    magenta,
+    magenta 10%,
     #ff0077,
     #ff0077,
     #ff8800,
@@ -297,6 +297,8 @@ body {
   font-size: 4rem;
   color: #ffcc00;
   animation: blink 1s step-end infinite;
+  position: relative;
+  z-index: 10;
 }
 
 @keyframes blink {
