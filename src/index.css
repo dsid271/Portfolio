@@ -267,3 +267,38 @@ body {
     clip: rect(67px, 9999px, 122px, 0);
   }
 }
+
+.banded-text {
+  font-size: 4rem;
+  font-family: 'Press Start 2P', cursive;
+  text-transform: uppercase;
+  background: linear-gradient(
+    to bottom, 
+    magenta, 
+    #ff0077, 
+    #ff0077, 
+    #ff8800, 
+    #ff8800, 
+    #ffcc00, 
+    #ffcc00, 
+    #ff8800, 
+    #ff8800, 
+    #ff0077, 
+    #ff0077,
+    magenta
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.blinking-cursor {
+  display: inline-block;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
