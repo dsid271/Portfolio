@@ -274,7 +274,7 @@ body {
   text-transform: uppercase;
   background: linear-gradient(
     to bottom,
-    magenta 10%,
+    magenta,
     #ff0077,
     #ff0077,
     #ff8800,
@@ -294,11 +294,9 @@ body {
 .blinking-cursor {
   display: inline-block;
   font-family: 'commodore', cursive, monospace;
-  font-size: 4rem;
-  color: #ffcc00;
+  font-size: inherit;
+  -webkit-text-fill-color:: #ff0077;
   animation: blink 1s step-end infinite;
-  position: relative;
-  z-index: 10;
 }
 
 @keyframes blink {
