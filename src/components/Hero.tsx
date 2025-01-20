@@ -13,11 +13,11 @@ export function Hero() {
           transition={{ duration: 0.8, ease: 'easeOut' }}
         >
           <div className="glitch-wrapper">
-            <h1
-              className="glitch text-4xl sm:text-5xl banded-text"
-              data-text="ML ENGINEER_"
-            >
-              ML ENGINEER<span className="blinking-cursor">_</span>
+            <h1 className="glitch text-4xl sm:text-5xl">
+              <span className="banded-text" data-text="ML ENGINEER">
+                ML ENGINEER
+              </span>
+              <span className="blinking-cursor">_</span>
             </h1>
           </div>
           <p className="text-lg sm:text-xl text-[#00ffff] mb-8 pixel-text">
