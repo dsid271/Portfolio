@@ -272,11 +272,17 @@ body {
   background: linear-gradient(
     to bottom,
     magenta,
+    magenta,
     #ff0077,
+    #ff0077,
+    #ff8800,
     #ff8800,
     #ffcc00,
     #ff8800,
+    #ff8800,
     #ff0077,
+    #ff0077,
+    magenta,
     magenta
   );
   -webkit-background-clip: text;
