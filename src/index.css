@@ -269,21 +269,13 @@ body {
 }
 
 .banded-text {
-  font-size: 4rem;
-  font-family: 'commodore', cursive, monospace;
-  text-transform: uppercase;
   background: linear-gradient(
     to bottom,
     magenta,
     #ff0077,
-    #ff0077,
-    #ff8800,
     #ff8800,
     #ffcc00,
-    #ffcc00,
     #ff8800,
-    #ff8800,
-    #ff0077,
     #ff0077,
     magenta
   );
@@ -292,11 +284,9 @@ body {
 }
 
 .blinking-cursor {
-  display: inline-block;
-  font-family: 'commodore', cursive, monospace;
-  font-size: inherit;
-  -webkit-text-fill-color:: #ff0077;
-  animation: blink 1s step-end infinite;
+    display: inline-block;
+    -webkit-text-fill-color: #f07;
+    animation: blink 1s step-end infinite;
 }
 
 @keyframes blink {
