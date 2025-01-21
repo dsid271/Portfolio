@@ -112,7 +112,15 @@ body {
   position: relative;
   font-family: 'Press';
   font-weight: bold;
-  color: #00FF00;
+  color: linear-gradient(to bottom,
+    #D600FF 15%,
+    #FF0000 30%,
+    #FF7600 41%,
+    #FF3B00 66%,
+    #FF0000 67%,
+    #D600FF 74%,
+    #FFE400 100%
+    );
   letter-spacing: 3px;
   z-index: 1;
 }
