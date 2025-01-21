@@ -16,7 +16,7 @@
 }
 
 @font-face {
-  font-family: 'Press 2p';
+  font-family: 'Press';
   src: url('/assets/fonts/PressStart2P-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
@@ -110,7 +110,7 @@ body {
 
 .glitch {
   position: relative;
-  font-family: 'Press 2p';
+  font-family: 'Press';
   font-weight: bold;
   color: #00FF00;
   letter-spacing: 3px;
