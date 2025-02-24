@@ -71,15 +71,15 @@ export function Projects() {
   const [ref, controls] = useScrollAnimation();
 
   return (
-    <section id="projects" className="py-20 bg-white">
+    <section id="projects" className="py-20 bg-[var(--pixel-bg)]">
       <div className="container mx-auto px-4">
         <motion.h2 
-          className="text-3xl font-bold text-center mb-12"
+          className="text-3xl font-['Press'] text-[var(--pixel-primary)] text-center mb-12 pixel-text"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          Featured Projects
+          PROJECTS
         </motion.h2>
         <motion.div 
           ref={ref}
@@ -92,23 +92,26 @@ export function Projects() {
             <motion.div
               key={index}
               variants={item}
-              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              className="pixel-border bg-[var(--pixel-bg)] overflow-hidden hover:scale-105 transition-transform"
             >
-              <motion.img 
-                src={project.image} 
-                alt={project.title}
-                className="w-full h-48 object-cover"
-                whileHover={{ scale: 1.1 }}
-                transition={{ duration: 0.3 }}
-              />
+              <div className="relative">
+                <motion.img 
+                  src={project.image} 
+                  alt={project.title}
+                  className="w-full h-48 object-cover opacity-70 scanline"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[var(--pixel-bg)]"></div>
+              </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-3">{project.title}</h3>
-                <p className="text-gray-600 mb-4 min-h-[120px]">{project.description}</p>
+                <h3 className="text-xl font-['Press'] text-[var(--pixel-primary)] mb-3">{project.title}</h3>
+                <p className="text-[var(--pixel-accent)] mb-4 min-h-[120px]">{project.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((tech, techIndex) => (
                     <motion.span 
                       key={techIndex}
-                      className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
+                      className="bg-[var(--pixel-primary)] text-[var(--pixel-bg)] px-3 py-1 text-sm font-['commodore']"
                       whileHover={{ scale: 1.1 }}
                       transition={{ duration: 0.2 }}
                     >
