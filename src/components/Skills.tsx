@@ -16,17 +16,22 @@ const skills = [
   {
     icon: <Code className="w-8 h-8" />,
     title: 'Programming',
-    items: ['Python', 'R', 'Java', 'C++']
+    items: ['Python', 'C' , 'Java']
+  },
+  {
+    icon: <Code className="w-8 h-8" />,
+    title: 'Web Development',
+    items: ['HTML', 'CSS' , 'Javascript' , 'React']
   },
   {
     icon: <Terminal className="w-8 h-8" />,
     title: 'Tools',
-    items: ['Docker', 'Linux', 'AWS', 'Jupyter']
+    items: ['Docker', 'Linux', 'GCP', 'Jupyter']
   },
   {
     icon: <GitBranch className="w-8 h-8" />,
     title: 'Version Control',
-    items: ['Git', 'GitHub', 'MLflow', 'DVC']
+    items: ['Git', 'GitHub']
   },
   {
     icon: <BarChart className="w-8 h-8" />,
@@ -62,16 +67,16 @@ export function Skills() {
   const [ref, controls] = useScrollAnimation();
 
   return (
-    <section id="skills" className="py-20 bg-gray-50">
+    <section id="skills" className="py-20 bg-[var(--pixel-bg)]">
       <div className="container mx-auto px-4">
         <motion.h2 
-          className="text-3xl font-bold text-center mb-12"
+          className="text-3xl font-['Press'] text-[var(--pixel-primary)] text-center mb-12 pixel-text"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          Technical Skills
+          TECH SKILLS
         </motion.h2>
         <motion.div 
           ref={ref}
@@ -84,25 +89,25 @@ export function Skills() {
             <motion.div
               key={index}
               variants={item}
-              className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex flex-col h-full"
+              className="pixel-border bg-[var(--pixel-bg)] p-6 hover:scale-105 transition-transform"
             >
               <div className="flex items-center gap-4 mb-4">
                 <motion.div
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6 }}
-                  className="text-blue-600"
+                  whileHover={{ scale: 1.2 }}
+                  transition={{ duration: 0.2 }}
+                  className="text-[var(--pixel-primary)]"
                 >
                   {skill.icon}
                 </motion.div>
-                <h3 className="text-xl font-semibold text-gray-800">{skill.title}</h3>
+                <h3 className="text-xl font-['Press'] text-[var(--pixel-primary)]">{skill.title}</h3>
               </div>
               <ul className="space-y-2 flex-grow">
                 {skill.items.map((item, itemIndex) => (
                   <li 
                     key={itemIndex} 
-                    className="text-gray-600 flex items-center gap-2"
+                    className="text-[var(--pixel-accent)] flex items-center gap-2"
                   >
-                    <span className="w-1.5 h-1.5 bg-blue-500 rounded-full"></span>
+                    <span className="w-2 h-2 bg-[var(--pixel-secondary)]"></span>
                     {item}
                   </li>
                 ))}
