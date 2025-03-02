@@ -104,7 +104,7 @@ export function Projects() {
                 <motion.img 
                   src={project.image} 
                   alt={project.title}
-                  className="w-full h-48 object-cover opacity-70 scanline"
+                  className="w-full h-48 object-cover scanline"
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.3 }}
                 />
