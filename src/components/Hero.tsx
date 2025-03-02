@@ -12,7 +12,7 @@ export function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
         >
-          <div className="glitch-wrapper text-3xl sm:text-4xl md:text-5xl lg:text-6xl relative">
+          <div className="glitch-wrapper relative">
             <h1 className="glitch" data-text="ML ENGINEER">
               <span className="banded-text" data-text="ML ENGINEER">
                 ML ENGINEER
