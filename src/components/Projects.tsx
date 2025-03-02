@@ -1,24 +1,30 @@
 import { motion } from 'framer-motion';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import pxArt1 from '../assets/images/pxArt.png';
+import pxArt2 from '../assets/images/pxArt (1).png';
+import pxArt3 from '../assets/images/pxArt (2).png';
+import pxArt4 from '../assets/images/pxArt (3).png';
+import pxArt5 from '../assets/images/pxArt (4).png';
+import pxArt6 from '../assets/images/pxArt (6).png';
 
 const projects = [
   {
     title: 'Deep Learning for Medical Imaging',
     description: 'Developed a CNN-based model for early detection of diseases in medical images, achieving 94% accuracy.',
     tech: ['PyTorch', 'OpenCV', 'Docker'],
-    image: '/assets/images/pxArt (1).png')
+    image: pxArt2
   },
   {
     title: 'Natural Language Processing Pipeline',
     description: 'Built an end-to-end NLP pipeline for sentiment analysis on social media data using BERT.',
     tech: ['TensorFlow', 'BERT', 'NLTK'],
-    image: '/assets/images/pxArt (2).png'
+    image: pxArt3
   },
   {
     title: 'Time Series Forecasting',
     description: 'Implemented LSTM networks for predicting stock market trends with feature engineering.',
     tech: ['Keras', 'Pandas', 'Scikit-learn'],
-    image: '/assets/images/pxArt (3).png'
+    image: pxArt4
   },
   {
     title: 'Finding Similar Questions on Quora',
@@ -30,19 +36,19 @@ const projects = [
     title: 'Payment Fraud Detection',
     description: 'Trained ML models on the PaySim1 dataset to identify fraud in online payments, achieving high precision, recall, and AUC.',
     tech: ['Logistic Regression', 'Random Forest', 'EDA'],
-    image: '/assets/images/pxArt.png'
+    image: pxArt1
   },
   {
     title: 'Car Price Prediction',
     description: 'Built a regression model using scikit-learn to predict car prices, handling preprocessing, feature engineering, and evaluation.',
     tech: ['Scikit-learn', 'RandomForestRegressor', 'Python'],
-    image: '/assets/images/pxArt (4).png'
+    image: pxArt5
   },
   {
     title: 'Language Translation Model',
     description: 'Developed a transformer-based model for translating English to Hindi and Telugu, using a custom WordPiece tokenizer and Opus100 dataset.',
     tech: ['PyTorch', 'Transformers', 'WordPiece'],
-    image: '/assets/images/pxArt (6).png'
+    image: pxArt6
   }
 ];
 
