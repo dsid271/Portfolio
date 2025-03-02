@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
-import { useScrollAnimation } from '../hooks/useScrollAnimation';
-import pxArt1 from '../assets/images/pxArt.png';
-import pxArt2 from '../assets/images/pxArt (1).png';
-import pxArt3 from '../assets/images/pxArt (2).png';
-import pxArt4 from '../assets/images/pxArt (3).png';
-import pxArt5 from '../assets/images/pxArt (4).png';
-import pxArt6 from '../assets/images/pxArt (6).png';
+import { useScrollAnimation } from './hooks/useScrollAnimation';
+import pxArt1 from './assets/images/pxArt.png';
+import pxArt2 from './assets/images/pxArt (1).png';
+import pxArt3 from './assets/images/pxArt (2).png';
+import pxArt4 from './assets/images/pxArt (3).png';
+import pxArt5 from './assets/images/pxArt (4).png';
+import pxArt6 from './assets/images/pxArt (6).png';
 
 const projects = [
   {
