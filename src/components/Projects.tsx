@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useScrollAnimation } from './hooks/useScrollAnimation';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import pxArt1 from './assets/images/pxArt.png';
 import pxArt2 from './assets/images/pxArt (1).png';
 import pxArt3 from './assets/images/pxArt (2).png';
