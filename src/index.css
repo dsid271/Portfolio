@@ -321,3 +321,27 @@ body {
     opacity: 0;
   }
 }
+
+@media (max-width: 640px) {
+  .glitch-wrapper {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+  .glitch-wrapper {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .glitch-wrapper {
+    font-size: 4rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .glitch-wrapper {
+    font-size: 5rem;
+  }
+}
