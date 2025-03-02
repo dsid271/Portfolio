@@ -6,19 +6,19 @@ const projects = [
     title: 'Deep Learning for Medical Imaging',
     description: 'Developed a CNN-based model for early detection of diseases in medical images, achieving 94% accuracy.',
     tech: ['PyTorch', 'OpenCV', 'Docker'],
-    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=400'
+    image: './assets/images/pxArt (1).png'
   },
   {
     title: 'Natural Language Processing Pipeline',
     description: 'Built an end-to-end NLP pipeline for sentiment analysis on social media data using BERT.',
-    tech: ['TensorFlow', 'BERT', 'AWS'],
-    image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&q=80&w=400'
+    tech: ['TensorFlow', 'BERT', 'NLTK'],
+    image: './assets/images/pxArt (2).png'
   },
   {
     title: 'Time Series Forecasting',
     description: 'Implemented LSTM networks for predicting stock market trends with feature engineering.',
     tech: ['Keras', 'Pandas', 'Scikit-learn'],
-    image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&q=80&w=400'
+    image: './assets/images/pxArt (3).png'
   },
   {
     title: 'Finding Similar Questions on Quora',
@@ -30,19 +30,19 @@ const projects = [
     title: 'Payment Fraud Detection',
     description: 'Trained ML models on the PaySim1 dataset to identify fraud in online payments, achieving high precision, recall, and AUC.',
     tech: ['Logistic Regression', 'Random Forest', 'EDA'],
-    image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3'
+    image: './assets/images/pxArt.png'
   },
   {
     title: 'Car Price Prediction',
     description: 'Built a regression model using scikit-learn to predict car prices, handling preprocessing, feature engineering, and evaluation.',
     tech: ['Scikit-learn', 'RandomForestRegressor', 'Python'],
-    image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=400'
+    image: './assets/images/pxArt (4).png'
   },
   {
     title: 'Language Translation Model',
     description: 'Developed a transformer-based model for translating English to Hindi and Telugu, using a custom WordPiece tokenizer and Opus100 dataset.',
     tech: ['PyTorch', 'Transformers', 'WordPiece'],
-    image: 'https://plus.unsplash.com/premium_vector-1689096883272-84a4edd015c4?q=80&w=1392&auto=format&fit=crop&ixlib=rb-4.0.3'
+    image: './assets/images/pxArt (6).png'
   }
 ];
 
