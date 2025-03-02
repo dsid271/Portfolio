@@ -6,19 +6,19 @@ const projects = [
     title: 'Deep Learning for Medical Imaging',
     description: 'Developed a CNN-based model for early detection of diseases in medical images, achieving 94% accuracy.',
     tech: ['PyTorch', 'OpenCV', 'Docker'],
-    image: './assets/images/pxArt (1).png'
+    image: '/assets/images/pxArt (1).png')
   },
   {
     title: 'Natural Language Processing Pipeline',
     description: 'Built an end-to-end NLP pipeline for sentiment analysis on social media data using BERT.',
     tech: ['TensorFlow', 'BERT', 'NLTK'],
-    image: './assets/images/pxArt (2).png'
+    image: '/assets/images/pxArt (2).png'
   },
   {
     title: 'Time Series Forecasting',
     description: 'Implemented LSTM networks for predicting stock market trends with feature engineering.',
     tech: ['Keras', 'Pandas', 'Scikit-learn'],
-    image: './assets/images/pxArt (3).png'
+    image: '/assets/images/pxArt (3).png'
   },
   {
     title: 'Finding Similar Questions on Quora',
@@ -30,19 +30,19 @@ const projects = [
     title: 'Payment Fraud Detection',
     description: 'Trained ML models on the PaySim1 dataset to identify fraud in online payments, achieving high precision, recall, and AUC.',
     tech: ['Logistic Regression', 'Random Forest', 'EDA'],
-    image: './assets/images/pxArt.png'
+    image: '/assets/images/pxArt.png'
   },
   {
     title: 'Car Price Prediction',
     description: 'Built a regression model using scikit-learn to predict car prices, handling preprocessing, feature engineering, and evaluation.',
     tech: ['Scikit-learn', 'RandomForestRegressor', 'Python'],
-    image: './assets/images/pxArt (4).png'
+    image: '/assets/images/pxArt (4).png'
   },
   {
     title: 'Language Translation Model',
     description: 'Developed a transformer-based model for translating English to Hindi and Telugu, using a custom WordPiece tokenizer and Opus100 dataset.',
     tech: ['PyTorch', 'Transformers', 'WordPiece'],
-    image: './assets/images/pxArt (6).png'
+    image: '/assets/images/pxArt (6).png'
   }
 ];
 
