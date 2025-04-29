@@ -13,9 +13,9 @@ export function Hero() {
           transition={{ duration: 0.8, ease: 'easeOut' }}
         >
           <div className="glitch-wrapper relative">
-            <h1 className="glitch" data-text="ML ENGINEER">
-              <span className="banded-text" data-text="ML ENGINEER">
-                ML ENGINEER
+            <h1 className="glitch" data-text="D SIDHARTHA">
+              <span className="banded-text" data-text="D SIDHARTHA">
+                D SIDHARTHA
               </span>
               <span className="blinking-cursor">_</span>
             </h1>

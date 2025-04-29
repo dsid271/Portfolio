@@ -7,7 +7,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
             <h3 className="text-xl font-extrude">Dondapati Sidhartha</h3>
-            <p className="text-gray-400">ML Engineer | B.Tech Final Year</p>
+            <p className="text-gray-400">Aspiring AI/ML Engineer | B.Tech Final Year</p>
           </div>
           <div className="flex gap-6">
             <a href="https://github.com/dsid271" className="hover:text-blue-400 transition-colors">
