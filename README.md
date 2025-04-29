@@ -1,4 +1,4 @@
-# ML Engineer Portfolio
+# My Portfolio
 
 A retro-styled portfolio website built with React, TypeScript, and Vite.
 
