@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import projectsIconDecoSrc from '../../assets/images/projects-deco.png';
 import pxArt1 from '/assets/images/pxArt.png';
 import pxArt2 from '/assets/images/pxArt (1).png';
 import pxArt3 from '/assets/images/pxArt (2).png';
@@ -77,15 +78,16 @@ export function Projects() {
   const [ref, controls] = useScrollAnimation();
 
   return (
-    <section id="projects" className="py-20 bg-[var(--pixel-bg)]">
+    <section id="projects" className="py-20 bg-genshin-bg">
       <div className="container mx-auto px-4">
         <motion.h2 
-          className="text-3xl font-['Press'] text-[var(--pixel-primary)] text-center mb-12 pixel-text"
+          className="text-3xl font-['Press'] text-genshin-gold text-center mb-12 pixel-text flex items-center justify-center gap-x-3"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          PROJECTS
+          <img src={projectsIconDecoSrc} alt="Deco" className="w-6 h-6" /> {/* Adjust size as needed */}
+          <span>PROJECTS</span>
         </motion.h2>
         <motion.div 
           ref={ref}
@@ -98,7 +100,7 @@ export function Projects() {
             <motion.div
               key={index}
               variants={item}
-              className="pixel-border bg-[var(--pixel-bg)] overflow-hidden hover:scale-105 transition-transform"
+              className="border border-genshin-blue rounded-md bg-genshin-bg-light overflow-hidden hover:scale-105 transition-transform"
             >
               <div className="relative">
                 <motion.img 
@@ -108,16 +110,16 @@ export function Projects() {
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.3 }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[var(--pixel-bg)]"></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-genshin-bg-light"></div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-['Press'] text-[var(--pixel-primary)] mb-3">{project.title}</h3>
-                <p className="text-[var(--pixel-accent)] mb-4 min-h-[120px]">{project.description}</p>
+                <h3 className="text-xl font-['Press'] text-genshin-text mb-3">{project.title}</h3>
+                <p className="text-genshin-text-darker mb-4 min-h-[120px]">{project.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((tech, techIndex) => (
                     <motion.span 
                       key={techIndex}
-                      className="bg-[var(--pixel-primary)] text-[var(--pixel-bg)] px-3 py-1 text-sm font-['commodore']"
+                      className="bg-genshin-blue text-genshin-text px-3 py-1 text-sm rounded-sm"
                       whileHover={{ scale: 1.1 }}
                       transition={{ duration: 0.2 }}
                     >

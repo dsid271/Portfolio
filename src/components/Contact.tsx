@@ -42,7 +42,7 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-black text-white">
+    <section id="contact" className="py-20 bg-genshin-bg text-genshin-text">
       <div className="container mx-auto px-4">
         {isMessageSent ? (
           // Thank You Message
@@ -52,17 +52,17 @@ export function Contact() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-pixel font-commodore text-bright-yellow mb-4">
+            <h2 className="text-2xl text-genshin-gold mb-4">
               🎉 ACHIEVEMENT UNLOCKED 🎉
             </h2>
-            <p className="text-pixel font-commodore text-bright-green mb-6">
+            <p className="text-genshin-text mb-6">
               Thank You for Getting in Touch!
             </p>
-            <p className="text-pixel font-commodore text-white">
+            <p className="text-genshin-text-darker">
               I’ll get back to you as soon as possible. 😁
             </p>
             <button
-              className="mt-8 px-6 py-3 bg-bright-pink text-black font-commodore rounded-lg hover:bg-bright-yellow transition-all"
+              className="mt-8 inline-block bg-genshin-blue text-genshin-text py-3 px-6 pixel-text font-bold hover:bg-genshin-blue-dark border-2 border-genshin-blue-dark hover:border-genshin-blue transition-all duration-200 transform hover:scale-105 rounded-sm"
               onClick={handleBackToContact}
             >
               Back to Contact
@@ -78,34 +78,34 @@ export function Contact() {
               visible: { opacity: 1, y: 0 },
             }}
             transition={{ duration: 0.6 }}
-            className="max-w-3xl mx-auto bg-gray-900 rounded-lg shadow-lg p-8"
+            className="max-w-3xl mx-auto bg-genshin-bg-light border border-genshin-blue rounded-md p-8"
           >
-            <h2 className="text-pixel font-commodore text-bright-pink text-center mb-12">
+            <h2 className="text-3xl text-genshin-gold text-center mb-12 pixel-text">
               Get in Touch
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
-                <h3 className="text-xl font-semibold mb-4 text-bright-pink font-commodore">
+                <h3 className="text-xl text-genshin-aqua mb-4">
                   Contact Information
                 </h3>
-                <div className="space-y-4 text-bright-pink">
+                <div className="space-y-4 text-genshin-text-darker">
                   <div className="flex items-center gap-3">
-                    <Mail className="text-bright-green" />
+                    <Mail className="text-genshin-aqua" />
                     <span>dsid271@gmail.com</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Phone className="text-bright-green" />
+                    <Phone className="text-genshin-aqua" />
                     <span>+91 6309787190</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <MapPin className="text-bright-green" />
+                    <MapPin className="text-genshin-aqua" />
                     <span>Hyderabad, India</span>
                   </div>
                 </div>
               </div>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-bright-yellow mb-1 font-commodore">
+                  <label className="block text-sm text-genshin-text-darker mb-1">
                     Name
                   </label>
                   <input
@@ -113,12 +113,12 @@ export function Contact() {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border rounded-lg bg-gray-800 text-bright-green focus:ring-2 focus:ring-bright-pink focus:border-transparent transition-all duration-300"
+                    className="w-full bg-genshin-bg border border-genshin-blue text-genshin-text focus:ring-2 focus:ring-genshin-gold focus:border-genshin-gold rounded-sm p-2"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-bright-yellow mb-1 font-commodore">
+                  <label className="block text-sm text-genshin-text-darker mb-1">
                     Email
                   </label>
                   <input
@@ -126,12 +126,12 @@ export function Contact() {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border rounded-lg bg-gray-800 text-bright-green focus:ring-2 focus:ring-bright-pink focus:border-transparent transition-all duration-300"
+                    className="w-full bg-genshin-bg border border-genshin-blue text-genshin-text focus:ring-2 focus:ring-genshin-gold focus:border-genshin-gold rounded-sm p-2"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-bright-yellow mb-1 font-commodore">
+                  <label className="block text-sm text-genshin-text-darker mb-1">
                     Message
                   </label>
                   <textarea
@@ -139,16 +139,16 @@ export function Contact() {
                     value={formData.message}
                     onChange={handleChange}
                     rows={4}
-                    className="w-full px-4 py-2 border rounded-lg bg-gray-800 text-bright-green focus:ring-2 focus:ring-bright-pink focus:border-transparent transition-all duration-300"
+                    className="w-full bg-genshin-bg border border-genshin-blue text-genshin-text focus:ring-2 focus:ring-genshin-gold focus:border-genshin-gold rounded-sm p-2"
                     required
                   ></textarea>
                 </div>
                 <button
                   type="submit"
-                  className={`w-full py-2 px-4 rounded-lg font-commodore transition-all duration-300 ${
+                  className={`w-full py-3 px-6 pixel-text font-bold text-genshin-text rounded-sm transition-all duration-200 transform hover:scale-105 border-2 border-genshin-blue-dark ${
                     loading
-                      ? 'bg-gray-500 cursor-not-allowed'
-                      : 'bg-bright-pink hover:bg-bright-yellow text-black'
+                      ? 'bg-genshin-text-darker cursor-not-allowed'
+                      : 'bg-genshin-blue hover:bg-genshin-blue-dark hover:border-genshin-blue'
                   }`}
                   disabled={loading} // Disable button while loading
                 >

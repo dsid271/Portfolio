@@ -1,6 +1,7 @@
 import { Brain, Database, Code, GitBranch, Terminal, BarChart } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import skillsIconDecoSrc from '../../assets/images/skills-deco.png';
 
 const skills = [
   {
@@ -67,16 +68,17 @@ export function Skills() {
   const [ref, controls] = useScrollAnimation();
 
   return (
-    <section id="skills" className="py-20 bg-[var(--pixel-bg)]">
+    <section id="skills" className="py-20 bg-genshin-bg">
       <div className="container mx-auto px-4">
         <motion.h2 
-          className="text-3xl font-['Press'] text-[var(--pixel-primary)] text-center mb-12 pixel-text"
+          className="text-3xl font-['Press'] text-genshin-gold text-center mb-12 pixel-text flex items-center justify-center gap-x-3"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          TECH SKILLS
+          <img src={skillsIconDecoSrc} alt="Deco" className="w-6 h-6" /> {/* Adjust size as needed */}
+          <span>TECH SKILLS</span>
         </motion.h2>
         <motion.div 
           ref={ref}
@@ -89,25 +91,25 @@ export function Skills() {
             <motion.div
               key={index}
               variants={item}
-              className="pixel-border bg-[var(--pixel-bg)] p-6 hover:scale-105 transition-transform"
+              className="border border-genshin-blue rounded-md bg-genshin-bg-light p-6 hover:scale-105 transition-transform"
             >
               <div className="flex items-center gap-4 mb-4">
                 <motion.div
                   whileHover={{ scale: 1.2 }}
                   transition={{ duration: 0.2 }}
-                  className="text-[var(--pixel-primary)]"
+                  className="text-genshin-aqua"
                 >
                   {skill.icon}
                 </motion.div>
-                <h3 className="text-xl font-['Press'] text-[var(--pixel-primary)]">{skill.title}</h3>
+                <h3 className="text-xl font-['Press'] text-genshin-text">{skill.title}</h3>
               </div>
               <ul className="space-y-2 flex-grow">
                 {skill.items.map((item, itemIndex) => (
                   <li 
                     key={itemIndex} 
-                    className="text-[var(--pixel-accent)] flex items-center gap-2"
+                    className="text-genshin-text-darker flex items-center gap-2"
                   >
-                    <span className="w-2 h-2 bg-[var(--pixel-secondary)]"></span>
+                    <span className="w-1.5 h-1.5 bg-genshin-gold rounded-full"></span>
                     {item}
                   </li>
                 ))}
