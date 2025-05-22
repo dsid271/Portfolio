@@ -1,5 +1,7 @@
-import { Github, Linkedin, Mail } from 'lucide-react';
 import pixelLogoSrc from '../../assets/images/pixel-logo.png';
+import githubIconSrc from '../../assets/images/github-icon.png';
+import linkedinIconSrc from '../../assets/images/linkedin-icon.png';
+import mailIconSrc from '../../assets/images/mail-icon.png';
 
 export function Header() {
   return (
@@ -11,13 +13,13 @@ export function Header() {
         </h1>
         <div className="flex gap-4">
           <a href="https://github.com/dsid271" className="text-genshin-text-darker hover:text-genshin-gold transition-colors">
-            <Github size={24} />
+            <img src={githubIconSrc} alt="GitHub" className="w-6 h-6" />
           </a>
           <a href="https://www.linkedin.com/in/sidhartha-dondapati-90541827a/" className="text-genshin-text-darker hover:text-genshin-gold transition-colors">
-            <Linkedin size={24} />
+            <img src={linkedinIconSrc} alt="LinkedIn" className="w-6 h-6" />
           </a>
           <a href="mailto:dsid271@gmail.com" className="text-genshin-text-darker hover:text-genshin-gold transition-colors">
-            <Mail size={24} />
+            <img src={mailIconSrc} alt="Mail" className="w-7 h-7" />
           </a>
         </div>
       </nav>
