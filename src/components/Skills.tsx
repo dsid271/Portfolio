@@ -1,5 +1,5 @@
 import { Brain, Database, Code, GitBranch, Terminal, BarChart } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion'; // Modified import
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import skillsIconDecoSrc from '../../assets/images/skills-deco.png';
 
@@ -66,23 +66,68 @@ const item = {
   }
 };
 
+// Define listAnimationVariants outside SkillCard if SkillCard is defined within Skills,
+// or pass it as a prop if SkillCard is a separate component.
+const listAnimationVariants = {
+  initial: {
+    opacity: 0,
+    height: 0,
+    y: -10,
+    transition: { duration: 0.2, ease: "easeOut" }
+  },
+  active: {
+    opacity: 1,
+    height: 'auto',
+    y: 0,
+    transition: { duration: 0.3, ease: "easeOut", delayChildren: 0.1, staggerChildren: 0.05 }
+  }
+};
+
+// New SkillCard component
+const SkillCard = ({ skillData, itemVariant }: { skillData: any, itemVariant: any }) => {
+  const listControls = useAnimation();
+
+  return (
+    <motion.div
+      variants={itemVariant} // Use the passed item variant
+      onHoverStart={() => listControls.start("active")}
+      onHoverEnd={() => listControls.start("initial")}
+      className="border border-genshin-blue rounded-md bg-genshin-bg-light p-6 transition-all duration-300 ease-out hover:scale-105 hover:border-genshin-gold hover:shadow-pixel-lift pixel-card-pattern"
+    >
+      <div className="flex items-center gap-4 mb-4">
+        <motion.div
+          whileHover={{ scale: 1.2 }}
+          transition={{ duration: 0.2 }}
+          className="text-genshin-aqua"
+        >
+          {skillData.icon}
+        </motion.div>
+        <h3 className="text-xl font-['Press'] text-genshin-text">{skillData.title}</h3>
+      </div>
+      <motion.ul
+        variants={listAnimationVariants}
+        initial="initial"
+        animate={listControls}
+        style={{ overflow: 'hidden' }}
+        className="space-y-2 flex-grow"
+      >
+        {skillData.items.map((skillItem: string, itemIndex: number) => (
+          <motion.li
+            key={itemIndex}
+            className="text-genshin-text-darker flex items-center gap-2"
+            // variants={{ initial: { opacity: 0, x: -10 }, active: { opacity: 1, x: 0 } }} // Optional item-level
+          >
+            <span className="w-1.5 h-1.5 bg-genshin-gold rounded-full"></span>
+            {skillItem}
+          </motion.li>
+        ))}
+      </motion.ul>
+    </motion.div>
+  );
+};
+
 export function Skills() {
   const [ref, controls] = useScrollAnimation();
-
-  const listAnimationVariants = {
-    initial: {
-      opacity: 0,
-      height: 0,
-      y: -10,
-      transition: { duration: 0.2, ease: "easeOut" }
-    },
-    active: { // This state will be triggered by the parent's whileHover="active"
-      opacity: 1,
-      height: 'auto',
-      y: 0,
-      transition: { duration: 0.3, ease: "easeOut", delayChildren: 0.1, staggerChildren: 0.05 }
-    }
-  };
 
   return (
     <section id="skills" className="py-20 bg-genshin-bg">
@@ -105,41 +150,7 @@ export function Skills() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
         >
           {skills.map((skill, index) => (
-            <motion.div
-              key={index}
-              variants={item}
-              whileHover="active" // Added this prop
-              className="border border-genshin-blue rounded-md bg-genshin-bg-light p-6 transition-all duration-300 ease-out hover:scale-105 hover:border-genshin-gold hover:shadow-pixel-lift pixel-card-pattern"
-            >
-              <div className="flex items-center gap-4 mb-4">
-                <motion.div
-                  whileHover={{ scale: 1.2 }}
-                  transition={{ duration: 0.2 }}
-                  className="text-genshin-aqua"
-                >
-                  {skill.icon}
-                </motion.div>
-                <h3 className="text-xl font-['Press'] text-genshin-text">{skill.title}</h3>
-              </div>
-              <motion.ul
-                variants={listAnimationVariants}
-                initial="initial" // Stays 'initial' unless parent hover state changes it
-                style={{ overflow: 'hidden' }} // Added for clean animation
-                className="space-y-2 flex-grow" // Existing classes
-              >
-                {skill.items.map((skillItem, itemIndex) => ( // Changed 'item' to 'skillItem' to avoid conflict with variant name
-                  <motion.li // Optional: add item-level animation if desired using staggerChildren from parent
-                    key={itemIndex}
-                    className="text-genshin-text-darker flex items-center gap-2"
-                    // Example of item-level stagger animation (optional)
-                    // variants={{ initial: { opacity: 0, x: -10 }, active: { opacity: 1, x: 0 } }}
-                  >
-                    <span className="w-1.5 h-1.5 bg-genshin-gold rounded-full"></span>
-                    {skillItem}
-                  </motion.li>
-                ))}
-              </motion.ul>
-            </motion.div>
+            <SkillCard key={index} skillData={skill} itemVariant={item} />
           ))}
         </motion.div>
       </div>

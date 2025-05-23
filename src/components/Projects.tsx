@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion'; // Modified import
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import projectsIconDecoSrc from '../../assets/images/projects-deco.png';
 import pxArt1 from '/assets/images/pxArt.png';
@@ -77,21 +77,79 @@ const item = {
   }
 };
 
+// Define descriptionVariants and item variant in a scope accessible to ProjectCard
+const descriptionVariants = {
+  initial: {
+    maxHeight: '60px', // Adjust as needed for approx. 3 lines
+    opacity: 0.85,
+    transition: { duration: 0.3, ease: "easeOut" }
+  },
+  active: { 
+    maxHeight: '500px', // Should be enough for most descriptions
+    opacity: 1,
+    transition: { duration: 0.4, ease: "easeOut" }
+  }
+};
+
+const ProjectCard = ({ project, itemVariant }: { project: any, itemVariant: any }) => {
+  const descControls = useAnimation();
+
+  return (
+    <motion.div
+      variants={itemVariant} // Card's own entry animation
+      onHoverStart={() => descControls.start("active")}
+      onHoverEnd={() => descControls.start("initial")}
+      className="border border-genshin-blue rounded-md bg-genshin-bg-light overflow-hidden transition-all duration-300 ease-out hover:scale-105 hover:border-genshin-gold hover:shadow-pixel-lift pixel-card-pattern"
+    >
+      <div className="relative">
+        <motion.img 
+          src={project.image} 
+          alt={project.title}
+          className="w-full h-48 object-cover" // Removed scanline, can be added back if desired
+          whileHover={{ scale: 1.1 }}
+          transition={{ duration: 0.3 }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-genshin-bg-light"></div>
+      </div>
+
+      <div className="p-6">
+        <h3 className="text-xl text-genshin-text font-['Press'] mb-3">{project.title}</h3>
+        
+        <motion.div
+          variants={descriptionVariants} // Defined in outer scope
+          initial="initial"
+          animate={descControls}
+          className="overflow-hidden relative"
+        >
+          <p className="text-genshin-text-darker mb-4">{project.description}</p>
+          <motion.span
+            className="absolute bottom-1 right-1 text-genshin-text-darker text-lg"
+            variants={{ initial: { opacity: 1 }, active: { opacity: 0 } }}
+            animate={descControls} // Also driven by descControls
+          >
+            ...
+          </motion.span>
+        </motion.div>
+
+        <div className="flex flex-wrap gap-2 mt-4"> {/* Added mt-4 for spacing */}
+          {project.tech.map((tech: string, techIndex: number) => (
+            <motion.span 
+              key={techIndex}
+              className="bg-genshin-blue text-genshin-text px-3 py-1 text-sm rounded-sm"
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.2 }}
+            >
+              {tech}
+            </motion.span>
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
 export function Projects() {
   const [ref, controls] = useScrollAnimation();
-
-  const descriptionVariants = {
-    initial: {
-      maxHeight: '60px', // Adjust as needed for approx. 3 lines
-      opacity: 0.85,
-      transition: { duration: 0.3, ease: "easeOut" }
-    },
-    active: { // This state will be triggered by the parent's whileHover="active"
-      maxHeight: '500px', // Should be enough for most descriptions
-      opacity: 1,
-      transition: { duration: 0.4, ease: "easeOut" }
-    }
-  };
 
   return (
     <section id="projects" className="py-20 bg-genshin-bg">
@@ -113,51 +171,7 @@ export function Projects() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              variants={item}
-              whileHover="active" // Ensured this prop is present
-              className="border border-genshin-blue rounded-md bg-genshin-bg-light overflow-hidden transition-all duration-300 ease-out hover:scale-105 hover:border-genshin-gold hover:shadow-pixel-lift pixel-card-pattern"
-            >
-              <div className="relative">
-                <motion.img 
-                  src={project.image} 
-                  alt={project.title}
-                  className="w-full h-48 object-cover scanline"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.3 }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-genshin-bg-light"></div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-['Press'] text-genshin-text mb-3">{project.title}</h3>
-                <motion.div
-                  variants={descriptionVariants}
-                  initial="initial"
-                  className="overflow-hidden relative"
-                >
-                  <p className="text-genshin-text-darker mb-4">{project.description}</p>
-                  <motion.span
-                    className="absolute bottom-1 right-1 text-genshin-text-darker text-lg"
-                    variants={{ initial: { opacity: 1 }, active: { opacity: 0 } }}
-                  >
-                    ...
-                  </motion.span>
-                </motion.div>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech, techIndex) => (
-                    <motion.span 
-                      key={techIndex}
-                      className="bg-genshin-blue text-genshin-text px-3 py-1 text-sm rounded-sm"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      {tech}
-                    </motion.span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
+            <ProjectCard key={index} project={project} itemVariant={item} />
           ))}
         </motion.div>
       </div>
