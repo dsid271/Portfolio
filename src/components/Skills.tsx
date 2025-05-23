@@ -69,17 +69,15 @@ const item = {
 // Define listAnimationVariants outside SkillCard if SkillCard is defined within Skills,
 // or pass it as a prop if SkillCard is a separate component.
 const listAnimationVariants = {
-  initial: {
-    opacity: 0,
-    height: 0,
-    y: -10,
-    transition: { duration: 0.2, ease: "easeOut" }
+  initial: { 
+    opacity: 0, 
+    y: -10, // Start slightly above its final position
+    transition: { duration: 0.2, ease: "easeOut" } 
   },
-  active: {
-    opacity: 1,
-    height: 'auto',
-    y: 0,
-    transition: { duration: 0.3, ease: "easeOut", delayChildren: 0.1, staggerChildren: 0.05 }
+  active: { 
+    opacity: 1, 
+    y: 0, // Slide down to its natural position relative to where it's placed
+    transition: { duration: 0.3, ease: "easeOut" } // Removed stagger for now, can be added back to li if needed
   }
 };
 
@@ -92,9 +90,9 @@ const SkillCard = ({ skillData, itemVariant }: { skillData: any, itemVariant: an
       variants={itemVariant} // Use the passed item variant
       onHoverStart={() => listControls.start("active")}
       onHoverEnd={() => listControls.start("initial")}
-      className="border border-genshin-blue rounded-md bg-genshin-bg-light p-6 transition-all duration-300 ease-out hover:scale-105 hover:border-genshin-gold hover:shadow-pixel-lift pixel-card-pattern"
+      className="relative border border-genshin-blue rounded-md bg-genshin-bg-light p-6 transition-all duration-300 ease-out hover:scale-105 hover:border-genshin-gold hover:shadow-pixel-lift pixel-card-pattern" // Added relative
     >
-      <div className="flex items-center gap-4 mb-4">
+      <div className="flex items-center gap-4 mb-4"> {/* This div's height can be used to calculate 'top' for the ul if needed */}
         <motion.div
           whileHover={{ scale: 1.2 }}
           transition={{ duration: 0.2 }}
@@ -108,8 +106,8 @@ const SkillCard = ({ skillData, itemVariant }: { skillData: any, itemVariant: an
         variants={listAnimationVariants}
         initial="initial"
         animate={listControls}
-        style={{ overflow: 'hidden' }}
-        className="space-y-2 flex-grow"
+        className="absolute left-0 right-0 z-10 bg-genshin-bg-light border border-genshin-gold rounded-md shadow-pixel-lift p-4 space-y-2" // Ensured classes are correct
+        style={{ top: '75px', width: '100%' }} // Added width: '100%'
       >
         {skillData.items.map((skillItem: string, itemIndex: number) => (
           <motion.li

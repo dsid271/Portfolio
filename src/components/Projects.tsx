@@ -79,15 +79,15 @@ const item = {
 
 // Define descriptionVariants and item variant in a scope accessible to ProjectCard
 const descriptionVariants = {
-  initial: {
-    maxHeight: '60px', // Adjust as needed for approx. 3 lines
-    opacity: 0.85,
-    transition: { duration: 0.3, ease: "easeOut" }
+  initial: { 
+    opacity: 0, 
+    y: -10, // Start slightly above its final resting place
+    transition: { duration: 0.2, ease: "easeOut" } 
   },
   active: { 
-    maxHeight: '500px', // Should be enough for most descriptions
-    opacity: 1,
-    transition: { duration: 0.4, ease: "easeOut" }
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.3, ease: "easeOut" }
   }
 };
 
@@ -99,39 +99,37 @@ const ProjectCard = ({ project, itemVariant }: { project: any, itemVariant: any 
       variants={itemVariant} // Card's own entry animation
       onHoverStart={() => descControls.start("active")}
       onHoverEnd={() => descControls.start("initial")}
-      className="border border-genshin-blue rounded-md bg-genshin-bg-light overflow-hidden transition-all duration-300 ease-out hover:scale-105 hover:border-genshin-gold hover:shadow-pixel-lift pixel-card-pattern"
+      className="relative border border-genshin-blue rounded-md bg-genshin-bg-light overflow-hidden transition-all duration-300 ease-out hover:scale-105 hover:border-genshin-gold hover:shadow-pixel-lift pixel-card-pattern" // Added relative
     >
-      <div className="relative">
+      <div className="relative"> {/* This relative is for the image gradient overlay */}
         <motion.img 
           src={project.image} 
           alt={project.title}
-          className="w-full h-48 object-cover" // Removed scanline, can be added back if desired
+          className="w-full h-48 object-cover" 
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.3 }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-genshin-bg-light"></div>
       </div>
 
-      <div className="p-6">
+      <div className="p-6"> {/* This div provides padding and a layout context for elements before the overlay */}
         <h3 className="text-xl text-genshin-text font-['Press'] mb-3">{project.title}</h3>
         
+        {/* Placeholder for description's original space if needed, or adjust top value of overlay */}
+        <div className="h-10"></div> {/* Example: Fixed height to push tech tags down, adjust as needed */}
+
         <motion.div
-          variants={descriptionVariants} // Defined in outer scope
+          variants={descriptionVariants} // As redefined above
           initial="initial"
           animate={descControls}
-          className="overflow-hidden relative"
+          className="absolute left-0 right-0 z-10 bg-genshin-bg-light border-t border-genshin-gold rounded-b-md shadow-pixel-lift p-4" // Updated classes
+          style={{ top: '200px', width: '100%' }} // Adjusted top, width is 100% of parent (ProjectCard root)
         >
           <p className="text-genshin-text-darker mb-4">{project.description}</p>
-          <motion.span
-            className="absolute bottom-1 right-1 text-genshin-text-darker text-lg"
-            variants={{ initial: { opacity: 1 }, active: { opacity: 0 } }}
-            animate={descControls} // Also driven by descControls
-          >
-            ...
-          </motion.span>
         </motion.div>
 
-        <div className="flex flex-wrap gap-2 mt-4"> {/* Added mt-4 for spacing */}
+        {/* Tech tags will now appear below the fixed-height placeholder or be overlaid if the placeholder isn't tall enough */}
+        <div className="flex flex-wrap gap-2 mt-4"> 
           {project.tech.map((tech: string, techIndex: number) => (
             <motion.span 
               key={techIndex}
