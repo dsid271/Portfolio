@@ -64,18 +64,34 @@ const container = {
 };
 
 const item = {
-  hidden: { y: 30, opacity: 0 },
+  hidden: { y: 30, opacity: 0, scale: 0.9 },
   visible: {
     y: 0,
     opacity: 1,
+    scale: 1,
     transition: {
-      duration: 0.6
+      type: "spring",
+      stiffness: 100,
+      damping: 10
     }
   }
 };
 
 export function Projects() {
   const [ref, controls] = useScrollAnimation();
+
+  const descriptionVariants = {
+    initial: {
+      maxHeight: '60px', // Adjust as needed for approx. 3 lines
+      opacity: 0.85,
+      transition: { duration: 0.3, ease: "easeOut" }
+    },
+    active: { // This state will be triggered by the parent's whileHover="active"
+      maxHeight: '500px', // Should be enough for most descriptions
+      opacity: 1,
+      transition: { duration: 0.4, ease: "easeOut" }
+    }
+  };
 
   return (
     <section id="projects" className="py-20 bg-genshin-bg">
@@ -100,7 +116,8 @@ export function Projects() {
             <motion.div
               key={index}
               variants={item}
-              className="border border-genshin-blue rounded-md bg-genshin-bg-light overflow-hidden hover:scale-105 transition-transform"
+              whileHover="active" // Ensured this prop is present
+              className="border border-genshin-blue rounded-md bg-genshin-bg-light overflow-hidden transition-all duration-300 ease-out hover:scale-105 hover:border-genshin-gold hover:shadow-pixel-lift pixel-card-pattern"
             >
               <div className="relative">
                 <motion.img 
@@ -114,7 +131,19 @@ export function Projects() {
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-['Press'] text-genshin-text mb-3">{project.title}</h3>
-                <p className="text-genshin-text-darker mb-4 min-h-[120px]">{project.description}</p>
+                <motion.div
+                  variants={descriptionVariants}
+                  initial="initial"
+                  className="overflow-hidden relative"
+                >
+                  <p className="text-genshin-text-darker mb-4">{project.description}</p>
+                  <motion.span
+                    className="absolute bottom-1 right-1 text-genshin-text-darker text-lg"
+                    variants={{ initial: { opacity: 1 }, active: { opacity: 0 } }}
+                  >
+                    ...
+                  </motion.span>
+                </motion.div>
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((tech, techIndex) => (
                     <motion.span 

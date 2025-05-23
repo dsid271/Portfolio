@@ -16,6 +16,9 @@ export default {
         'genshin-gold': '#f1c40f',
         'genshin-aqua': '#1abc9c',
       },
+      boxShadow: {
+        'pixel-lift': '3px 3px 0px rgba(0, 0, 0, 0.25)',
+      },
     },
   },
   plugins: [],

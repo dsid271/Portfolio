@@ -61,3 +61,14 @@ body {
   );
   pointer-events: none;
 }
+
+.pixel-card-pattern {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.03), /* Faint white lines for dark card backgrounds */
+    rgba(255, 255, 255, 0.03) 1px,
+    transparent 1px,
+    transparent 6px /* Adjust spacing as needed */
+  );
+  background-size: 8px 8px; /* Controls the repeat size of the pattern, can be adjusted */
+}

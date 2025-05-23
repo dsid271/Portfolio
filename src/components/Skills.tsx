@@ -53,19 +53,36 @@ const container = {
 };
 
 const item = {
-  hidden: { y: 20, opacity: 0 },
+  hidden: { y: 20, opacity: 0, scale: 0.9 },
   visible: {
     y: 0,
     opacity: 1,
+    scale: 1,
     transition: {
-      duration: 0.5,
-      ease: "easeOut"
+      type: "spring",
+      stiffness: 100,
+      damping: 10
     }
   }
 };
 
 export function Skills() {
   const [ref, controls] = useScrollAnimation();
+
+  const listAnimationVariants = {
+    initial: {
+      opacity: 0,
+      height: 0,
+      y: -10,
+      transition: { duration: 0.2, ease: "easeOut" }
+    },
+    active: { // This state will be triggered by the parent's whileHover="active"
+      opacity: 1,
+      height: 'auto',
+      y: 0,
+      transition: { duration: 0.3, ease: "easeOut", delayChildren: 0.1, staggerChildren: 0.05 }
+    }
+  };
 
   return (
     <section id="skills" className="py-20 bg-genshin-bg">
@@ -91,7 +108,8 @@ export function Skills() {
             <motion.div
               key={index}
               variants={item}
-              className="border border-genshin-blue rounded-md bg-genshin-bg-light p-6 hover:scale-105 transition-transform"
+              whileHover="active" // Added this prop
+              className="border border-genshin-blue rounded-md bg-genshin-bg-light p-6 transition-all duration-300 ease-out hover:scale-105 hover:border-genshin-gold hover:shadow-pixel-lift pixel-card-pattern"
             >
               <div className="flex items-center gap-4 mb-4">
                 <motion.div
@@ -103,17 +121,24 @@ export function Skills() {
                 </motion.div>
                 <h3 className="text-xl font-['Press'] text-genshin-text">{skill.title}</h3>
               </div>
-              <ul className="space-y-2 flex-grow">
-                {skill.items.map((item, itemIndex) => (
-                  <li 
-                    key={itemIndex} 
+              <motion.ul
+                variants={listAnimationVariants}
+                initial="initial" // Stays 'initial' unless parent hover state changes it
+                style={{ overflow: 'hidden' }} // Added for clean animation
+                className="space-y-2 flex-grow" // Existing classes
+              >
+                {skill.items.map((skillItem, itemIndex) => ( // Changed 'item' to 'skillItem' to avoid conflict with variant name
+                  <motion.li // Optional: add item-level animation if desired using staggerChildren from parent
+                    key={itemIndex}
                     className="text-genshin-text-darker flex items-center gap-2"
+                    // Example of item-level stagger animation (optional)
+                    // variants={{ initial: { opacity: 0, x: -10 }, active: { opacity: 1, x: 0 } }}
                   >
                     <span className="w-1.5 h-1.5 bg-genshin-gold rounded-full"></span>
-                    {item}
-                  </li>
+                    {skillItem}
+                  </motion.li>
                 ))}
-              </ul>
+              </motion.ul>
             </motion.div>
           ))}
         </motion.div>
