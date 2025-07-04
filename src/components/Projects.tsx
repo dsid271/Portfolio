@@ -77,7 +77,7 @@ const projects = [
 		title: 'Car Price Prediction',
 		description:
 			'Built a regression model using scikit-learn to predict car prices, handling preprocessing, feature engineering, and evaluation.',
-		tech: ['Scikit-learn', 'RandomForestRegressor', 'Python'],
+		tech: ['Scikit-learn', 'Python', 'RandomForestRegressor'],
 		image: pxArt5,
     links: [
 			{
