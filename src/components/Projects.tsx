@@ -22,7 +22,7 @@ const projects = [
 			},
 			{
 				label: 'Preview',
-				url: 'https://9000-firebase-studio-1748786267001.cluster-ancjwrkgr5dvux4qug5rbzyc2y.cloudworkstations.dev/?monospaceUid=509388&embedded=0',
+				url: 'https://vayudashboard.vercel.app/',
 			},
 		],
 	},
