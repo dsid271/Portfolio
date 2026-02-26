@@ -68,7 +68,7 @@ export const Layout = () => {
 
             <Section index={0} title="ARCHITECT">
                 <div className="space-y-12 max-w-2xl">
-                    <p className="text-2xl md:text-4xl text-gray-100 leading-tight font-light lowercase tracking-tight">
+                    <p className="text-2xl md:text-4xl text-gray-100 leading-tight font-light tracking-tight">
                         {resumeData.about.bio}
                     </p>
                     <div className="flex flex-wrap gap-4 pt-8">
