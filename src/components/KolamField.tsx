@@ -42,9 +42,16 @@ export const KolamField: React.FC = () => {
         target: { tX: 0, tY: 0, tS: 1, tR: 0, tD: 0 }
     });
 
-    const numActiveParticles = 3050;
+    // Mobile detection — computed once at mount time
+    const isMobile = window.innerWidth < 768;
+
+    const numActiveParticles = isMobile ? 1200 : 3050;
     const numThinkingNodes = 10;
-    const numCanvasBubbles = 1500;
+    const numCanvasBubbles = isMobile ? 400 : 1500;
+    const bgMaskPoints = isMobile ? 5000 : 30000;
+
+    // On mobile the rings are scaled so they stay within the viewport
+    const ringScale = isMobile ? (window.innerWidth / 800) : 1;
 
     const mousePos = useRef({ x: -1000, y: -1000 });
 
@@ -92,21 +99,20 @@ export const KolamField: React.FC = () => {
         }
         bubbles.current = bb;
 
-        // Preferential Sampling: Sort vertices by distance to favor the outer shell
+        // Preferential Sampling: Sort vertices by distance to favour the outer shell
         const verticesWithDist = fullVertices.map(v => ({
             ...v,
             dist: Math.sqrt(v.x * v.x + v.y * v.y + v.z * v.z)
-        })).sort((a, b) => b.dist - a.dist); // Sort descending (outer first)
+        })).sort((a, b) => b.dist - a.dist);
 
         const pts: Particle[] = [];
         for (let i = 0; i < numActiveParticles; i++) {
             const ringIdx = i % 3;
-            const ringRadius = 150 + ringIdx * 80;
+            const ringRadius = (150 + ringIdx * 80) * ringScale;
             const angle = (i / (numActiveParticles / 3)) * Math.PI * 2;
             const kX = width / 2 + Math.cos(angle) * ringRadius;
             const kY = height / 2 + Math.sin(angle) * ringRadius;
 
-            // Bias: Use mostly outer vertices for the first 80% of particles
             let vIdx;
             if (i < numActiveParticles * 0.8) {
                 vIdx = Math.floor(Math.random() * (verticesWithDist.length * 0.4));
@@ -151,14 +157,29 @@ export const KolamField: React.FC = () => {
 
     useEffect(() => {
         let tX = 0, tY = 0, tS = 1, tR = 0, tD = 0;
-        switch (currentSection) {
-            case 0: tX = 0; tY = 0; tS = 1.0; tR = 0; break;
-            case 1: tX = -150; tY = -50; tS = 1.4; tR = 0.5; break;
-            case 2: tX = 200; tY = 0; tS = 1.2; tR = 1.5; break;
-            case 3: tX = 0; tY = 100; tS = 0.9; tR = 2.5; tD = 50; break;
-            case 4: tX = 0; tY = 0; tS = 1.6; tR = 3.5; break;
-            case 5: tX = 0; tY = 0; tS = 0.5; tR = 4.0; break;
+
+        if (isMobile) {
+            // On mobile the layout is stacked — no horizontal brain offset needed.
+            // Keep the brain centred; only vary scale and rotation per section.
+            switch (currentSection) {
+                case 0: tX = 0; tY = 0; tS = 0.7; tR = 0; break;
+                case 1: tX = 0; tY = -30; tS = 0.85; tR = 0.5; break;
+                case 2: tX = 0; tY = 0; tS = 0.75; tR = 1.5; break;
+                case 3: tX = 0; tY = 60; tS = 0.65; tR = 2.5; tD = 30; break;
+                case 4: tX = 0; tY = 0; tS = 1.0; tR = 3.5; break;
+                case 5: tX = 0; tY = 0; tS = 0.4; tR = 4.0; break;
+            }
+        } else {
+            switch (currentSection) {
+                case 0: tX = 0; tY = 0; tS = 1.0; tR = 0; break;
+                case 1: tX = -150; tY = -50; tS = 1.4; tR = 0.5; break;
+                case 2: tX = 200; tY = 0; tS = 1.2; tR = 1.5; break;
+                case 3: tX = 0; tY = 100; tS = 0.9; tR = 2.5; tD = 50; break;
+                case 4: tX = 0; tY = 0; tS = 1.6; tR = 3.5; break;
+                case 5: tX = 0; tY = 0; tS = 0.5; tR = 4.0; break;
+            }
         }
+
         viewState.current.target = { tX, tY, tS, tR, tD };
     }, [currentSection]);
 
@@ -215,7 +236,6 @@ export const KolamField: React.FC = () => {
             const rows = Math.ceil(height / cellSize);
             const grid: number[][] = Array.from({ length: cols * rows }, () => []);
 
-            // SHARED OSCILLATION for both layers
             const osc = Math.sin(Date.now() * 0.0006) * 0.12;
             const brainScale = 2.5;
             const offY = 50;
@@ -224,21 +244,19 @@ export const KolamField: React.FC = () => {
                 const p = pts[i];
                 const ringIdx = i % 3;
                 let angle = (i / (pts.length / 3)) * Math.PI * 2 + Date.now() * 0.0004 * (ringIdx + 1) * (ringIdx % 2 === 0 ? 1 : -1);
-                let ringRadius = 150 + ringIdx * 80;
+                let ringRadius = (150 + ringIdx * 80) * ringScale;
                 if (isUnstable) {
                     angle += Math.sin(Date.now() * 0.003 + i) * 1.5;
-                    ringRadius += Math.cos(Date.now() * 0.01 + i * 0.5) * 50 + (Math.random() - 0.5) * 20;
+                    ringRadius += Math.cos(Date.now() * 0.01 + i * 0.5) * 50 * ringScale + (Math.random() - 0.5) * 20;
                 }
                 p.kolamX = width / 2 + Math.cos(angle) * ringRadius;
                 p.kolamY = height / 2 + Math.sin(angle) * ringRadius;
 
-                // Recalculate brain position with matching scale
                 const v = fullVertices[i % fullVertices.length];
                 const bX = v.z * brainScale;
                 const bY = -v.y * brainScale + offY;
                 const bZ = v.x * brainScale;
 
-                // Apply oscillation + viewState rotation
                 const totalRot = osc + vs.rotY;
                 const cosR = Math.cos(totalRot), sinR = Math.sin(totalRot);
                 const rotX = bX * cosR - bZ * sinR;
@@ -266,18 +284,16 @@ export const KolamField: React.FC = () => {
                 if (gx >= 0 && gx < cols && gy >= 0 && gy < rows) grid[gy * cols + gx].push(i);
             }
 
-            // BACKGROUND VERTEX MASK (faint cloud behind main particles)
-            // Only appears during final lock-in stage (0.85 -> 1.0)
+            // BACKGROUND VERTEX MASK — reduced point count on mobile
             const bgThreshold = 0.85;
             if (morphFactor > bgThreshold) {
-                // Ease-in-out curve for "Video Editing" style smoothness
                 const normalizedFactor = (morphFactor - bgThreshold) / (1 - bgThreshold);
                 const easedAlpha = normalizedFactor * normalizedFactor * (3 - 2 * normalizedFactor);
 
                 ctx.fillStyle = '#60a5fa';
                 ctx.globalAlpha = easedAlpha * 0.25;
                 const cosR = Math.cos(osc + vs.rotY), sinR = Math.sin(osc + vs.rotY);
-                for (let i = 0; i < 30000; i++) {
+                for (let i = 0; i < bgMaskPoints; i++) {
                     const v = fullVertices[i];
                     const bX = v.z * brainScale;
                     const bY = -v.y * brainScale + offY;
@@ -297,11 +313,10 @@ export const KolamField: React.FC = () => {
                 const p = pts[i];
                 const gx = Math.floor(p.x / cellSize), gy = Math.floor(p.y / cellSize);
 
-                // Adaptive connectivity: Outer brain (cerebrum/cerebellum) gets more edges
                 const isOuter = p.dist > 45;
                 const maxConns = isOuter ? 15 : 4;
                 const adaptiveMaxDist = isOuter ? maxDist * 1.65 : maxDist;
-                const activeMaxZ = isOuter ? maxZDist * 0.8 : maxZDist; // Tighter Z-limit for outer shell to follow surface
+                const activeMaxZ = isOuter ? maxZDist * 0.8 : maxZDist;
 
                 let conns = 0;
                 for (let nx = gx - 1; nx <= gx + 1; nx++) {
@@ -317,7 +332,6 @@ export const KolamField: React.FC = () => {
                                     const distRatio = Math.sqrt(dSq) / adaptiveMaxDist;
                                     const alph = (1 - distRatio) * (0.04 + morphFactor * 0.7);
 
-                                    // Base connection line (consistent and thin)
                                     ctx.beginPath();
                                     ctx.moveTo(p.x, p.y);
                                     ctx.lineTo(p2.x, p2.y);
@@ -332,7 +346,7 @@ export const KolamField: React.FC = () => {
                                     }
                                     ctx.stroke();
 
-                                    // NEURON DATA PULSES (Traveling Signals)
+                                    // NEURON DATA PULSES
                                     const signalFreq = isOuter ? 128 : 1024;
                                     if (isConverged && (i + nIdx) % signalFreq === 0) {
                                         ctx.save();
@@ -345,10 +359,8 @@ export const KolamField: React.FC = () => {
                                         const tX = p.x + (p2.x - p.x) * Math.max(0, progress - trailLen);
                                         const tY = p.y + (p2.y - p.y) * Math.max(0, progress - trailLen);
 
-                                        // Additive blending for bloom
                                         ctx.globalCompositeOperation = 'lighter';
 
-                                        // 1. Soft Glow (Outer Layer)
                                         ctx.beginPath();
                                         ctx.moveTo(tX, tY);
                                         ctx.lineTo(sX, sY);
@@ -356,7 +368,6 @@ export const KolamField: React.FC = () => {
                                         ctx.strokeStyle = `rgba(60, 130, 240, ${alph * 0.6})`;
                                         ctx.stroke();
 
-                                        // 2. High-Intensity Core (Inner Layer)
                                         ctx.beginPath();
                                         ctx.moveTo(tX, tY);
                                         ctx.lineTo(sX, sY);
