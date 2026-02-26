@@ -98,7 +98,24 @@ export const Layout = () => {
                                     <span key={t} className="text-[10px] uppercase border border-white/10 px-3 py-1 rounded-full text-gray-500">{t}</span>
                                 ))}
                             </div>
-                            <p className="text-gray-400 leading-relaxed max-w-xl text-lg">{p.description}</p>
+                            <p className="text-gray-400 leading-relaxed max-w-xl text-lg mb-6">{p.description}</p>
+
+                            {/* Project Links Rendering */}
+                            {p.links && p.links.length > 0 && (
+                                <div className="flex flex-wrap gap-4 mt-2">
+                                    {p.links.map((link, linkIdx) => (
+                                        <a
+                                            key={linkIdx}
+                                            href={link.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-xs font-mono px-4 py-2 border border-blue-500/30 text-blue-400 hover:bg-blue-500 hover:text-white transition-all duration-300 flex items-center gap-2"
+                                        >
+                                            <span className="text-[10px]">▶</span> {link.label}
+                                        </a>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     ))}
                 </div>

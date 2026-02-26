@@ -30,15 +30,69 @@ export const resumeData = {
     projects: [
         {
             title: "Vayu",
-            subtitle: "Hyper-local Air Quality Monitoring",
-            description: "Addressed the critical need for real-time, hyper-local air quality monitoring and adaptive forecasting.",
-            stack: ["Arduino", "Python (FastAPI)", "TensorFlow", "TypeScript", "Tailwind CSS", "Firebase"]
+            subtitle: "Hyper-local Air Quality Forecasting System",
+            description: "Built an IoT-based system for real-time, hyper-local air quality monitoring and forecasting using deep learning and cloud APIs.",
+            stack: ["ESP32", "Tensorflow", "Next.js", "FastAPI", "Firebase"],
+            links: [
+                { label: "GitHub", url: "https://github.com/dsid271/VAYU" },
+                { label: "Preview", url: "https://vayudashboard.vercel.app/" }
+            ]
         },
         {
             title: "Serverless GenAI Log Analyzer",
             subtitle: "PoC Generative AI Tool",
             description: "Built a GenAI log analyzer using FastAPI, LangChain, and Google Gemini. Packaged in Docker for Cloud Run.",
-            stack: ["Python", "Google Gemini API", "LangChain", "Docker", "Google Cloud Run"]
+            stack: ["Python", "Google Gemini API", "LangChain", "Docker", "Google Cloud Run"],
+            links: []
+        },
+        {
+            title: "Lupus Nephritis Classifier",
+            subtitle: "Medical Image Classification",
+            description: "Used transfer learning with EfficientNetV2S to classify Lupus Nephritis from kidney images, improving accuracy by 14% to 0.95 with a compact model.",
+            stack: ["Keras", "EfficientNetV2S", "Transfer Learning", "Python"],
+            links: [{ label: "Kaggle", url: "https://www.kaggle.com/code/sidharthad/fork-of-lupusproject" }]
+        },
+        {
+            title: "Language Translation Model",
+            subtitle: "Custom Transformer Model",
+            description: "Developed a transformer-based model for translating English to Hindi and Telugu, using a custom WordPiece tokenizer and Opus100 dataset.",
+            stack: ["PyTorch", "Transformers", "WordPiece"],
+            links: [{ label: "Colab Notebook", url: "https://colab.research.google.com/drive/1LreIUTgAIi5TIFoeBC59FfYB-xhMJc3V?usp=sharing" }]
+        },
+        {
+            title: "Finding Similar Questions on Quora",
+            subtitle: "Duplicate Detection NLP",
+            description: "Developed a system to detect duplicate questions using techniques like Bag of Words (BOW), TF-IDF, and XGBoost.",
+            stack: ["XGBoost", "TF-IDF", "NLP"],
+            links: [{ label: "Colab Notebook", url: "https://colab.research.google.com/drive/1Dn5iiGH5NlsJhoVuetDjlIJHO-07ibVp?usp=sharing" }]
+        },
+        {
+            title: "Car Price Prediction",
+            subtitle: "Machine Learning Regression",
+            description: "Built a regression model using scikit-learn to predict car prices, handling preprocessing, feature engineering, and evaluation.",
+            stack: ["Scikit-learn", "Python", "RandomForestRegressor"],
+            links: [{ label: "Kaggle", url: "https://www.kaggle.com/code/sidharthad/car-price-prediction-with-machine-learning" }]
+        },
+        {
+            title: "Natural Language Processing Pipeline",
+            subtitle: "Sentiment Analysis",
+            description: "Built an end-to-end NLP pipeline for sentiment analysis on social media data using BERT.",
+            stack: ["TensorFlow", "BERT", "NLTK"],
+            links: []
+        },
+        {
+            title: "Time Series Forecasting",
+            subtitle: "Stock Market Predictions",
+            description: "Implemented LSTM networks for predicting stock market trends with feature engineering.",
+            stack: ["Keras", "Pandas", "Scikit-learn"],
+            links: []
+        },
+        {
+            title: "Payment Fraud Detection",
+            subtitle: "Anomaly Detection",
+            description: "Trained ML models on the PaySim1 dataset to identify fraud in online payments, achieving high precision, recall, and AUC.",
+            stack: ["Logistic Regression", "Random Forest", "EDA"],
+            links: []
         }
     ],
     education: [
