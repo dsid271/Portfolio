@@ -57,6 +57,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: black;
   overflow-x: hidden;
+  cursor: none;
+}
+
+* {
+  cursor: none !important;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

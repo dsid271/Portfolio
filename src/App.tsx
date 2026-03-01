@@ -3,6 +3,9 @@ import { KolamField } from './components/KolamField';
 import { ScrollManager } from './components/ScrollManager';
 import { Layout } from './components/Layout';
 import { SystemMonitor } from './components/SystemMonitor';
+import { OnboardingOverlay } from './components/OnboardingOverlay';
+import { HelpButton } from './components/HelpButton';
+import { CustomCursor } from './components/CustomCursor';
 import { startRafLoop } from './core/rafLoop';
 import { registerInteraction } from './core/interactionEngine';
 
@@ -13,7 +16,7 @@ function App() {
     }, []);
 
     return (
-        <div className="relative bg-black w-full min-h-screen text-white overflow-hidden">
+        <div className="relative bg-black w-full min-h-screen text-white">
             <ScrollManager />
 
             {/* 3D Background - Fixed */}
@@ -26,6 +29,9 @@ function App() {
 
             {/* HUD Layer */}
             <SystemMonitor />
+            <HelpButton />
+            <CustomCursor />
+            <OnboardingOverlay />
 
             {/* Grain Overlay */}
             <div className="fixed inset-0 z-50 pointer-events-none opacity-[0.03] mix-blend-overlay"

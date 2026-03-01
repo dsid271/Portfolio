@@ -55,8 +55,11 @@ export const SystemMonitor = () => {
                 <div className="text-gray-500">CONF: {(confidence * 100).toFixed(1)}%</div>
             </div>
 
-            <div className="relative border border-white/10 bg-black/40 backdrop-blur-sm w-48 h-24 p-2 rounded">
-                <canvas ref={canvasRef} width={170} height={80} className="w-full h-full opacity-80" />
+            <div className={`relative border border-white/10 bg-black/40 backdrop-blur-sm w-48 h-24 p-2 pt-6 rounded ${stage !== 'converged' ? 'animate-pulse' : ''}`}>
+                <div className="absolute top-2 left-2 text-[10px] text-gray-500 uppercase tracking-widest">
+                    Training Graph
+                </div>
+                <canvas ref={canvasRef} width={170} height={64} className="w-full h-full opacity-80" />
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black/50 to-transparent pointer-events-none" />
             </div>
 

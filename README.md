@@ -1,5 +1,74 @@
 # 🧠 Interactive Portfolio — Convergence-Driven Kolam System
 
+## Awwwards Submission Summary
+
+An **interactive portfolio** that behaves like a learning system: the interface does not “open” immediately. Instead, it **converges** based on your interaction quality (calmness, precision, and stability).
+
+**Highlights**
+
+* **Convergence-driven UI** (state gates what becomes visible)
+* **Kolam-inspired spatial constraints** (valid vs invalid snaps)
+* **Stochastic → deterministic typography** (characters lock independently)
+* **3D background reacts to state** via `@react-three/fiber` (no UI logic inside the scene)
+
+**Stack**
+
+* React + TypeScript (Create React App)
+* Zustand (global model state)
+* Three.js / React Three Fiber
+* Framer Motion
+* Interact.js
+
+**Links**
+
+* Live: `https://dsid271.github.io/Portfolio`
+
+---
+
+## Quickstart
+
+### Prerequisites
+
+* Node.js (LTS recommended)
+* npm (ships with Node)
+
+### Install
+
+```bash
+npm install
+```
+
+### Run locally
+
+```bash
+npm start
+```
+
+### Production build
+
+```bash
+npm run build
+```
+
+### Tests
+
+```bash
+npm test
+```
+
+### Deploy (GitHub Pages)
+
+This repo is configured for GitHub Pages via `gh-pages`.
+
+```bash
+npm run deploy
+```
+
+Notes:
+
+* The `homepage` is set in `package.json`.
+* The deploy command uses `gh-pages -d build --remote Portfolio`.
+
 ## Overview
 
 This project is an **experimental interactive portfolio** built with **React + TypeScript** that behaves like a learning system.
@@ -25,7 +94,7 @@ This is **not a typical portfolio** — it is a state-driven experience.
 
 ### 1. Model State (Global Brain)
 
-File: `core/modelState.ts`
+File: `src/core/modelState.ts`
 
 ```ts
 export type ModelStage = "init" | "training" | "converged" | "unstable";
@@ -50,7 +119,7 @@ export const modelState = {
 
 ## 2. RAF Loop (Passive Learning & Stabilization)
 
-File: `core/rafLoop.ts`
+File: `src/core/rafLoop.ts`
 
 Purpose:
 
@@ -72,7 +141,7 @@ The RAF loop **never handles interaction directly** — it only observes state.
 
 ## 3. Interaction Engine (Active Learning)
 
-File: `core/interactionEngine.ts`
+File: `src/core/interactionEngine.ts`
 
 Purpose:
 
@@ -105,14 +174,14 @@ This ensures **precision matters**.
 
 ### Kolam Field
 
-File: `core/kolamField.ts`
+File: `src/core/kolamField.ts`
 
 * Generates fixed anchor points in Kolam-like symmetry
 * These anchors define **valid spatial states**
 
 ### Kolam Snap
 
-File: `core/kolamSnap.ts`
+File: `src/core/kolamSnap.ts`
 
 * Given current position + desired drag
 * Finds nearest valid anchor
@@ -131,7 +200,7 @@ This creates a **tactile learning loop**:
 
 ## 5. Project Cards (Post-Convergence Interaction)
 
-File: `components/ProjectCard.tsx`
+File: `src/components/ProjectCard.tsx`
 
 Rules:
 
@@ -237,7 +306,7 @@ Navigation is earned, not clicked.
 * No fast particles
 * No camera movement
 * No noise shaders
-* Noo continuous animation
+* No continuous animation
 
 ### Recommended Background
 

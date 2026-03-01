@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { resumeData } from '../data/resume';
 import { useAppStore } from '../store/useAppStore';
@@ -45,28 +45,44 @@ const Section = ({
 };
 
 export const Layout = () => {
+    const heroRef = useRef(null);
+    const heroInView = useInView(heroRef, { margin: "-20% 0px -50% 0px" });
+    const contactRef = useRef(null);
+    const contactInView = useInView(contactRef, { margin: "-20% 0px -50% 0px" });
+    const setSection = useAppStore(s => s.setSection);
+
+    useEffect(() => { if (heroInView) setSection(0); }, [heroInView, setSection]);
+    useEffect(() => { if (contactInView) setSection(4); }, [contactInView, setSection]);
+
     return (
         <div className="relative w-full z-10 selection:bg-blue-500 selection:text-white">
 
-            {/* HERO - Full Screen */}
-            <section className="h-screen w-full flex flex-col items-center justify-center text-center pointer-events-none relative">
-                <div className="pointer-events-auto mix-blend-difference">
+            {/* HERO - Full Screen (section 0) */}
+            <section ref={heroRef} className="h-screen w-full flex flex-col items-center justify-center text-center pointer-events-none relative">
+                <div
+                    className="pointer-events-auto"
+                    style={{
+                        transform: 'translate3d(0, calc(var(--lenis-scroll, 0px) * -0.06), 0)'
+                    }}
+                >
                     <h1 className="text-7xl md:text-[12rem] font-black tracking-tighter leading-none mb-4 uppercase">
                         {resumeData.hero.name.split(' ')[0]}
                     </h1>
                     <h2 className="text-4xl md:text-6xl font-light tracking-tighter text-gray-400 mb-8 uppercase">
                         {resumeData.hero.name.split(' ').slice(1).join(' ')}
                     </h2>
-                    <p className="text-lg md:text-2xl font-light tracking-[0.3em] uppercase text-blue-400">
-                        {resumeData.hero.title}
-                    </p>
+                    {resumeData.hero.title ? (
+                        <p className="text-lg md:text-2xl font-light tracking-[0.3em] uppercase text-blue-400">
+                            {resumeData.hero.title}
+                        </p>
+                    ) : null}
                 </div>
                 <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce text-gray-600">
                     <span className="font-mono text-xs tracking-widest">SCROLL</span>
                 </div>
             </section>
 
-            <Section index={0} title="ARCHITECT">
+            <Section index={1} title="ARCHITECT">
                 <div className="space-y-12 max-w-2xl">
                     <p className="text-2xl md:text-4xl text-gray-100 leading-tight font-light tracking-tight">
                         {resumeData.about.bio}
@@ -85,7 +101,7 @@ export const Layout = () => {
                 <Marquee items={["NEURAL ARCHITECT", "CREATIVE DEVELOPER", "SYSTEM DESIGNER", "AI ENGINEER"]} speed={15} />
             </div>
 
-            <Section index={1} title="NETWORK">
+            <Section index={2} title="PROJECTS">
                 <div className="space-y-32">
                     {resumeData.projects.map((p, i) => (
                         <div key={i} className="group relative">
@@ -125,7 +141,7 @@ export const Layout = () => {
                 <Marquee items={resumeData.skills.tools} speed={40} reverse />
             </div>
 
-            <Section index={2} title="EVOLUTION">
+            <Section index={3} title="EXPERIENCE">
                 <div className="space-y-24">
                     {resumeData.experience.map((exp, i) => (
                         <div key={i} className="group flex flex-col md:flex-row gap-8 items-baseline">
@@ -142,28 +158,30 @@ export const Layout = () => {
                 </div>
             </Section>
 
-            {/* CONTACT / TERMINATE - Full Screen Centered */}
-            <section className="min-h-screen w-full flex flex-col items-center justify-center text-center px-8 py-24">
-                <span className="font-mono text-xs text-red-500 mb-8 tracking-[0.3em]">03 / TERMINATE</span>
-                <h2 className="text-5xl md:text-8xl font-black tracking-tighter leading-none mb-12 uppercase max-w-4xl">
-                    READY TO <span className="text-blue-500">OVERFIT</span> YOUR NEXT BIG CHALLENGE?
-                </h2>
-                <a
-                    href={`mailto:${resumeData.about.contact.email}`}
-                    className="text-2xl md:text-5xl font-bold border-b-4 border-blue-500 pb-2 hover:text-blue-500 transition-all"
-                >
-                    {resumeData.about.contact.email}
-                </a>
-                <div className="flex gap-8 mt-16 text-gray-500 font-mono text-sm uppercase tracking-widest">
-                    <a href={`https://${resumeData.about.contact.github}`} target="_blank" rel="noreferrer" className="hover:text-white transition-colors">GitHub</a>
-                    <a href={`https://${resumeData.about.contact.linkedin}`} target="_blank" rel="noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
+            {/* CONTACT / TERMINATE - Full Screen Centered (section 4) */}
+            <section ref={contactRef} className="min-h-screen w-full flex flex-col px-8">
+                <div className="flex-1 w-full flex flex-col items-center justify-center text-center py-24">
+                    <span className="font-mono text-xs text-red-500 mb-8 tracking-[0.3em]">04 / TERMINATE</span>
+                    <h2 className="text-5xl md:text-8xl font-black tracking-tighter leading-none mb-12 uppercase max-w-4xl">
+                        READY TO <span className="text-blue-500">OVERFIT</span> YOUR NEXT BIG CHALLENGE?
+                    </h2>
+                    <a
+                        href={`mailto:${resumeData.about.contact.email}`}
+                        className="text-2xl md:text-5xl font-bold border-b-4 border-blue-500 pb-2 hover:text-blue-500 transition-all"
+                    >
+                        {resumeData.about.contact.email}
+                    </a>
+                    <div className="flex gap-8 mt-16 text-gray-500 font-mono text-sm uppercase tracking-widest">
+                        <a href={`https://${resumeData.about.contact.github}`} target="_blank" rel="noreferrer" className="hover:text-white transition-colors">GitHub</a>
+                        <a href={`https://${resumeData.about.contact.linkedin}`} target="_blank" rel="noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
+                    </div>
                 </div>
-            </section>
 
-            <footer className="w-full py-12 px-8 flex justify-between items-end text-gray-800 font-mono text-[10px] uppercase tracking-widest">
-                <div>{new Date().getUTCFullYear()} © ARCHIVE-001</div>
-                <div>AUTONOMOUS SYSTEM // V.3.0.0</div>
-            </footer>
+                <footer className="w-full py-10 flex justify-between items-end text-gray-800 font-mono text-[10px] uppercase tracking-widest pr-64">
+                    <div>{new Date().getUTCFullYear()} © ARCHIVE-001</div>
+                    <div>AUTONOMOUS SYSTEM // V.3.0.0</div>
+                </footer>
+            </section>
 
         </div>
     );

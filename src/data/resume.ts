@@ -1,7 +1,7 @@
 export const resumeData = {
     hero: {
         name: "SIDHARTHA DONDAPATI",
-        title: "AI/ML Engineer",
+        title: "Machine Learning Engineer",
         tagline: "Building Intelligence. Engineering Experience.",
         location: "Hyderabad, Telangana"
     },

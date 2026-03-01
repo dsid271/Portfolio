@@ -11,6 +11,11 @@ export const ScrollManager = () => {
             smoothWheel: true,
         });
 
+        lenis.on('scroll', (e: { scroll: number; velocity: number }) => {
+            document.documentElement.style.setProperty('--lenis-scroll', `${e.scroll}px`);
+            document.documentElement.style.setProperty('--lenis-velocity', `${e.velocity}px`);
+        });
+
         function raf(time: number) {
             lenis.raf(time);
             requestAnimationFrame(raf);
