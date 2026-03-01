@@ -162,21 +162,21 @@ export const KolamField: React.FC = () => {
             // On mobile the layout is stacked — no horizontal brain offset needed.
             // Keep the brain centred; only vary scale and rotation per section.
             switch (currentSection) {
-                case 0: tX = 0; tY = 0; tS = 0.7; tR = 0; break;
-                case 1: tX = 0; tY = -30; tS = 0.85; tR = 0.5; break;
-                case 2: tX = 0; tY = 0; tS = 0.75; tR = 1.5; break;
-                case 3: tX = 0; tY = 60; tS = 0.65; tR = 2.5; tD = 30; break;
-                case 4: tX = 0; tY = 0; tS = 1.0; tR = 3.5; break;
-                case 5: tX = 0; tY = 0; tS = 0.4; tR = 4.0; break;
+                case 0: tX = 0; tY = 0; tS = 0.7; tR = Math.PI + 3; break; // Pure frontal
+                case 1: tX = 0; tY = -30; tS = 0.85; tR = Math.PI + 3.5; break; // Slightly facing right
+                case 2: tX = 0; tY = 0; tS = 0.75; tR = Math.PI + 4.5; break; // Pure left profile
+                case 3: tX = 0; tY = 60; tS = 0.65; tR = Math.PI + 5.5; tD = 30; break;
+                case 4: tX = 0; tY = 0; tS = 1.0; tR = Math.PI + 6.5; break;
+                case 5: tX = 0; tY = 0; tS = 0.4; tR = Math.PI + 7.5; break;
             }
         } else {
             switch (currentSection) {
-                case 0: tX = 0; tY = 0; tS = 1.0; tR = 0; break;
-                case 1: tX = -150; tY = -50; tS = 1.4; tR = 0.5; break;
-                case 2: tX = 200; tY = 0; tS = 1.2; tR = 1.5; break;
-                case 3: tX = 0; tY = 100; tS = 0.9; tR = 2.5; tD = 50; break;
-                case 4: tX = 0; tY = 0; tS = 1.6; tR = 3.5; break;
-                case 5: tX = 0; tY = 0; tS = 0.5; tR = 4.0; break;
+                case 0: tX = 0; tY = 0; tS = 1.0; tR = Math.PI + 3; break; // Pure frontal
+                case 1: tX = -150; tY = -50; tS = 1.4; tR = Math.PI + 3.5; break; // Slightly facing right
+                case 2: tX = 200; tY = 0; tS = 1.2; tR = Math.PI + 4.5; break; // Pure left profile
+                case 3: tX = 0; tY = 100; tS = 0.9; tR = Math.PI + 2.5; tD = 50; break;
+                case 4: tX = 0; tY = 0; tS = 1.6; tR = Math.PI + 3.5; break;
+                case 5: tX = 0; tY = 0; tS = 0.5; tR = Math.PI + 4.5; break;
             }
         }
 
@@ -240,10 +240,16 @@ export const KolamField: React.FC = () => {
             const brainScale = 2.5;
             const offY = 50;
 
-            for (let i = 0; i < pts.length; i++) {
+            // Kolam state optimization: fewer particles
+            // As morphFactor goes from 0 -> 1, we fade in/activate more particles.
+            const minParticles = isMobile ? 300 : 800;
+            // Eased particle count
+            const currentActiveCount = Math.floor(minParticles + (pts.length - minParticles) * (morphFactor * morphFactor));
+
+            for (let i = 0; i < currentActiveCount; i++) {
                 const p = pts[i];
                 const ringIdx = i % 3;
-                let angle = (i / (pts.length / 3)) * Math.PI * 2 + Date.now() * 0.0004 * (ringIdx + 1) * (ringIdx % 2 === 0 ? 1 : -1);
+                let angle = (i / (currentActiveCount / 3)) * Math.PI * 2 + Date.now() * 0.0004 * (ringIdx + 1) * (ringIdx % 2 === 0 ? 1 : -1);
                 let ringRadius = (150 + ringIdx * 80) * ringScale;
                 if (isUnstable) {
                     angle += Math.sin(Date.now() * 0.003 + i) * 1.5;
@@ -309,7 +315,7 @@ export const KolamField: React.FC = () => {
             }
 
             ctx.lineWidth = 0.55;
-            for (let i = 0; i < pts.length; i++) {
+            for (let i = 0; i < currentActiveCount; i++) {
                 const p = pts[i];
                 const gx = Math.floor(p.x / cellSize), gy = Math.floor(p.y / cellSize);
 
@@ -387,7 +393,7 @@ export const KolamField: React.FC = () => {
                 }
             }
 
-            for (let i = 0; i < pts.length; i++) {
+            for (let i = 0; i < currentActiveCount; i++) {
                 const p = pts[i];
                 const thk = p.isThinking && isConverged ? (Math.sin(Date.now() * 0.005 + i) * 0.5 + 0.5) : 0;
                 const sz = p.radius * (isUnstable ? 1.8 : 0.8) * (1 + thk * 2.5);
