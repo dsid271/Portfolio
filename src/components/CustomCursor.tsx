@@ -6,8 +6,26 @@ export const CustomCursor: React.FC = () => {
     const mousePos = useRef({ x: 0, y: 0 });
     const ringPos = useRef({ x: 0, y: 0 }); // Smoothed for ring
     const [isHovering, setIsHovering] = useState(false);
+    const [isTouchDevice, setIsTouchDevice] = useState(false);
 
     useEffect(() => {
+        // Check for touch device
+        const checkTouch = () => {
+            const isTouch = window.matchMedia('(pointer: coarse)').matches || 
+                           'ontouchstart' in window ||
+                           navigator.maxTouchPoints > 0;
+            setIsTouchDevice(isTouch);
+        };
+        checkTouch();
+
+        // Also check on resize in case of device changes
+        window.addEventListener('resize', checkTouch);
+        return () => window.removeEventListener('resize', checkTouch);
+    }, []);
+
+    useEffect(() => {
+        if (isTouchDevice) return;
+
         const moveMouse = (e: MouseEvent) => {
             mousePos.current = { x: e.clientX, y: e.clientY };
 
@@ -44,7 +62,10 @@ export const CustomCursor: React.FC = () => {
             window.removeEventListener('mousemove', moveMouse);
             cancelAnimationFrame(frameId);
         };
-    }, [isHovering]);
+    }, [isHovering, isTouchDevice]);
+
+    // Don't render on touch devices
+    if (isTouchDevice) return null;
 
     return (
         <div

@@ -72,7 +72,13 @@ export const Layout = () => {
                         {resumeData.hero.name.split(' ').slice(1).join(' ')}
                     </h2>
                     {resumeData.hero.title ? (
-                        <p className="text-lg md:text-2xl font-light tracking-[0.3em] uppercase text-blue-400">
+                        <p
+                            className="text-xl md:text-2xl uppercase text-blue-400 mt-4 tracking-[0.25em] font-medium"
+                            style={{
+                                fontFamily: "'Inter', sans-serif",
+                                transform: 'scaleX(1.25)',
+                            }}
+                        >
                             {resumeData.hero.title}
                         </p>
                     ) : null}

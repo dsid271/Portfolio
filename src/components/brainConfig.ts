@@ -22,7 +22,7 @@ export interface SectionView {
 
 const DESKTOP_SECTIONS: SectionView[] = [
     // 0 — Hero: slight 3/4 dimensional look
-    { shiftX: 0, shiftY: 0, scale: 1.1, rotation: ROTATIONS.FRONT + 0.25, dispersal: 0 },
+    { shiftX: 0, shiftY: 0, scale: 1.0, rotation: ROTATIONS.FRONT + 0.25, dispersal: 0 },
     // 1 — Architect: symmetrical, confident
     { shiftX: -150, shiftY: -50, scale: 1.3, rotation: ROTATIONS.FRONT, dispersal: 0 },
     // 2 — Network: dynamic but stable
@@ -30,7 +30,7 @@ const DESKTOP_SECTIONS: SectionView[] = [
     // 3 — Evolution: clean and centered
     { shiftX: 0, shiftY: 100, scale: 1.0, rotation: ROTATIONS.FRONT, dispersal: 0 },
     // 4 — Contact: calm ending
-    { shiftX: 0, shiftY: 0, scale: 0.7, rotation: ROTATIONS.FRONT, dispersal: 0 },
+    { shiftX: -350, shiftY: 0, scale: 0.9, rotation: ROTATIONS.FRONT, dispersal: 0 },
 ];
 
 const MOBILE_SECTIONS: SectionView[] = [
