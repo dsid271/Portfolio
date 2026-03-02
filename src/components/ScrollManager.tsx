@@ -1,15 +1,22 @@
 import { useEffect } from 'react';
 import Lenis from '@studio-freight/lenis';
 
-export const ScrollManager = () => {
+export const ScrollManager = ({
+    smoothWheel = true,
+    smoothTouch = true,
+}: {
+    smoothWheel?: boolean;
+    smoothTouch?: boolean;
+}) => {
     useEffect(() => {
         const lenis = new Lenis({
             duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             orientation: 'vertical',
             gestureOrientation: 'vertical',
-            smoothWheel: true,
-        });
+            smoothWheel,
+            smoothTouch,
+        } as unknown as ConstructorParameters<typeof Lenis>[0]);
 
         lenis.on('scroll', (e: { scroll: number; velocity: number }) => {
             document.documentElement.style.setProperty('--lenis-scroll', `${e.scroll}px`);
@@ -26,7 +33,7 @@ export const ScrollManager = () => {
         return () => {
             lenis.destroy();
         };
-    }, []);
+    }, [smoothTouch, smoothWheel]);
 
     return null; // Logic only component
 };
