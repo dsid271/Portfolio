@@ -17,7 +17,7 @@ export function Hero({ variant }: { variant: 'desktop' | 'mobile' }) {
                         >
                             {resumeData.hero.title}
                         </div>
-                        <p className="mt-4 text-base text-gray-300 leading-relaxed">{resumeData.hero.tagline}</p>
+                        <p className="mt-4 text-base text-white/80 leading-relaxed">{resumeData.hero.tagline}</p>
                     </div>
                 </div>
             </div>

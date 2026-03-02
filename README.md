@@ -74,6 +74,93 @@ Notes:
 This project is an **experimental interactive portfolio** built with **React + TypeScript** that behaves like a learning system.
 The UI does not respond instantly — it **converges** based on user intent, movement precision, and calm interaction.
 
+---
+
+## Dual Experience Architecture (Desktop vs Mobile)
+
+This portfolio intentionally renders **two different UI trees** depending on pointer type:
+
+- Desktop: interactive lab + training engine + live system HUD
+- Mobile: cinematic, scroll-first portfolio with a lightweight runtime
+
+### Device Detection
+
+Mobile detection is **pointer-based** (not width-based):
+
+- `src/hooks/useIsMobile.ts`
+- Uses `window.matchMedia("(pointer: coarse)")`
+- Reactive (listens to media query changes)
+
+### Root Split
+
+`src/App.tsx` renders one of:
+
+- `src/components/desktop/DesktopExperience.tsx`
+- `src/components/mobile/MobileExperience.tsx`
+
+### Desktop Experience (unchanged interactive system)
+
+Desktop keeps the experimental system intact:
+
+- Training engine: `registerInteraction()` (mousemove/scroll signals)
+- Passive learning loop: `startRafLoop()` (stage FSM + stabilization)
+- HUD graph: `SystemMonitor`
+- Onboarding overlay: `OnboardingOverlay`
+- Custom cursor
+- Lenis smooth scrolling with `smoothTouch: true`
+
+### Mobile Experience (lightweight, no engine cost)
+
+Mobile is a separate tree designed for performance:
+
+- No `SystemMonitor`
+- No onboarding overlay
+- No training engine calls
+- No global RAF learning loop
+- Lenis uses native touch momentum (`smoothTouch: false`)
+
+#### Three.js / KolamField Exclusion
+
+`KolamField` (three.js + OBJ loading + canvas) is **desktop-only** and is **not imported or mounted** in the mobile tree.
+This keeps three.js unreachable from the mobile component graph.
+
+---
+
+## Shared Content Components
+
+Content is centralized and reused across both experiences:
+
+- `src/components/shared/Hero.tsx`
+- `src/components/shared/SelectedWork.tsx`
+- `src/components/shared/About.tsx`
+- `src/components/shared/Contact.tsx`
+
+Desktop wraps these in the experimental layout.
+Mobile wraps these in a clean narrative layout.
+
+---
+
+## Mobile Polish Notes (Performance-First)
+
+Constraints followed throughout mobile refinement:
+
+- No three.js
+- No canvas
+- No new dependencies
+- No blur filters
+- No heavy shadows
+- No continuous scroll listeners
+
+Implemented refinements:
+
+- Safe-area padding via `env(safe-area-inset-*)` in `MobileLayout`
+- Authored section rhythm (hero stays `100svh`, other sections use intentional padding)
+- Controlled lighting system (single top-weighted atmospheric gradient)
+- Hero bottom fade overlay to soften transition into content
+- Selected Work card reveal tuned for subtle premium motion (opacity + small translate only)
+- Constrained reading width (`max-w-[28rem]`) + left-aligned titles for slight asymmetry
+- Card edges disciplined (max `rounded-2xl`, borders only, no shadows)
+
 The core idea:
 
 > *The interface “learns” the user before revealing itself.*

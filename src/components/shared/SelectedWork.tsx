@@ -6,19 +6,21 @@ export function SelectedWork({ variant }: { variant: 'desktop' | 'mobile' }) {
     if (variant === 'mobile') {
         return (
             <>
-                <div className="text-xs font-mono tracking-[0.35em] text-gray-400 uppercase mb-8">Selected Work</div>
-                <div className="space-y-6">
+                <div className="max-w-[28rem] mx-auto">
+                    <div className="text-xs font-mono tracking-[0.35em] text-gray-400 uppercase mb-8">Selected Work</div>
+                </div>
+                <div className="space-y-6 max-w-[28rem] mx-auto">
                     {resumeData.projects.map((p, i) => (
                         <motion.article
                             key={i}
-                            initial={{ opacity: 0, y: 14 }}
+                            initial={{ opacity: 0.9, y: 10 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: '-10% 0px -15% 0px' }}
-                            transition={{ duration: 0.5, ease: 'easeOut' }}
-                            className="border border-white/10 rounded-xl p-6 bg-black/60"
+                            transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+                            className="border border-white/10 rounded-2xl p-6 bg-black/60"
                         >
                             <div className="text-[10px] font-mono tracking-widest uppercase text-blue-400 mb-2">{p.subtitle}</div>
-                            <h2 className="text-2xl font-bold tracking-tight leading-tight">{p.title}</h2>
+                            <h2 className="text-2xl font-bold tracking-tight leading-tight text-left">{p.title}</h2>
                             <p className="mt-3 text-[15px] text-gray-300 leading-relaxed">{p.description}</p>
                             <div className="mt-4 flex flex-wrap gap-2">
                                 {p.stack.slice(0, 4).map((t) => (
