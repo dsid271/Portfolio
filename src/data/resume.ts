@@ -18,7 +18,7 @@ export const resumeData = {
     experience: [
         {
             company: "Cisco Systems",
-            role: "Associate Network Engineer",
+            role: "Consulting Engineer Trainee - India Technical Apprentice",
             period: "Jan 2026 - Present",
             description: "Joined Cisco focusing on network automation, infrastructure reliability, and integration between cloud services and on-prem networking.",
             achievements: [
