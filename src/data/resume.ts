@@ -6,7 +6,7 @@ export const resumeData = {
         location: "Hyderabad, Telangana"
     },
     about: {
-        bio: "AI/ML engineer skilled in Python, SQL, and frameworks like TensorFlow and FastAPI. Experienced in data analysis, cloud platforms (GCP), and automation using UiPath, with proficiency in Docker, Git, and modern development tools.",
+        bio: "AI/ML engineer skilled in Python, SQL, and frameworks like TensorFlow and FastAPI. Experienced in data analysis, cloud platforms (GCP), and automation using UiPath, with proficiency in D[...]",
         contact: {
             phone: "(+91) 6309-787-190",
             email: "dsid271@gmail.com",
@@ -16,6 +16,16 @@ export const resumeData = {
         }
     },
     experience: [
+        {
+            company: "Cisco Systems",
+            role: "Associate Network Engineer",
+            period: "Jan 2026 - Present",
+            description: "Joined Cisco focusing on network automation, infrastructure reliability, and integration between cloud services and on-prem networking.",
+            achievements: [
+                "Contributed to automation scripts for network provisioning and monitoring.",
+                "Collaborated with cross-functional teams to improve network observability and incident response workflows."
+            ]
+        },
         {
             company: "Kodryx AI",
             role: "AI Engineer Intern",
@@ -117,6 +127,7 @@ export const resumeData = {
         "TCS Codevita Global Ranking 378",
         "Ranked 947/2706 in Automated Essay Scoring (Kaggle)",
         "NCC 'B' Certificate (Grade 'A')",
-        "Oracle Cloud Infrastructure 2025 Generative AI Professional"
+        "Oracle Cloud Infrastructure 2025 Generative AI Professional",
+        "Cisco Certified Network Associate (CCNA) — 2026"
     ]
 };
