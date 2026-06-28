@@ -19,10 +19,10 @@ export const resumeData = {
         {
             company: "Cisco Systems",
             role: "Consulting Engineer Trainee - India Technical Apprentice",
-            period: "Jan 2026 - Present",
+            period: "Apr 2026 - Present",
             description: "Joined Cisco focusing on network automation, infrastructure reliability, and integration between cloud services and on-prem networking.",
             achievements: [
-                "Contributed to automation scripts for network provisioning and monitoring.",
+                "Contributed to automation scripts for network migration workflows.",
                 "Collaborated with cross-functional teams to improve network observability and incident response workflows."
             ]
         },
