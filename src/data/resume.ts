@@ -6,7 +6,7 @@ export const resumeData = {
         location: "Hyderabad, Telangana"
     },
     about: {
-        bio: "AI/ML engineer skilled in Python, SQL, and frameworks like TensorFlow and FastAPI. Experienced in data analysis, cloud platforms (GCP), and automation using UiPath, with proficiency in D[...]",
+        bio: "AI/ML engineer skilled in Python and SQL, experienced with TensorFlow, FastAPI, and production ML deployment. I work on data pipelines, model deployment, and automation across cloud platforms (GCP) to turn research into reliable, maintainable systems.",
         contact: {
             phone: "(+91) 6309-787-190",
             email: "dsid271@gmail.com",
