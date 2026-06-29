@@ -166,7 +166,7 @@ export const KolamField: React.FC = () => {
             window.removeEventListener('resize', handleResize);
             window.removeEventListener('mousemove', handleMouseMove);
         };
-    }, [modelLoaded, fullVertices]);
+    }, [modelLoaded, fullVertices, cfg.active, cfg.bubbles, cfg.thinkingNodes, ringScale]);
 
     // ── Section view targets ────────────────────────────────────────
     useEffect(() => {
@@ -178,7 +178,7 @@ export const KolamField: React.FC = () => {
             tR: view.rotation,
             tD: view.dispersal,
         };
-    }, [currentSection]);
+    }, [currentSection, isMobile]);
 
     // ── Render loop ─────────────────────────────────────────────────
     useEffect(() => {
@@ -476,7 +476,7 @@ export const KolamField: React.FC = () => {
 
         render();
         return () => cancelAnimationFrame(frameId);
-    }, [confidence, stage, modelLoaded, fullVertices, currentSection]);
+    }, [confidence, stage, modelLoaded, fullVertices, currentSection, isMobile, ringScale, cfg.bgMask, cfg.minKolam]);
 
     return (
         <canvas
